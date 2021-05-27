@@ -1,0 +1,46 @@
+.button{
+-fx-background-color:#c45442;
+-fx-background-radius: 30;
+}
+.button:hover{
+
+ 
+-fx-text-fill:white;
+
+}
+
+#reduceButton , #closeButton{
+-fx-background-color:white;
+}
+#reduceButton:hover,#closeButton:hover{
+-fx-text-fill:white;
+-fx-background-color:#c45442;
+}
+#registrazioneButton,#recuperoPWButton{
+-fx-background-color:white;
+-fx-text-fill:black;
+
+}
+
+#registrazioneButton:hover{
+-fx-font-size:20;
+-fx-font-weight:bold;
+}
+
+#recuperoPWButton:hover{
+-fx-font-weight:bold;
+-fx-font-size:18;
+}
+
+.text-field {
+    -fx-background-color: #a9a9a9 , white , white;
+    -fx-background-insets: 0 -1 -1 -1, 0 0 0 0, 0 -1 3 -1;
+}
+
+.text-field:focused {
+    -fx-background-color: #a9a9a9 , white , white;
+    -fx-background-insets: 0 -1 -1 -1, 0 0 0 0, 0 -1 3 -1;
+}
+
+
+

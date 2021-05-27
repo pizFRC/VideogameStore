@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="600.0" maxWidth="-Infinity" minHeight="600.0" minWidth="600.0" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.LoginController">
+   <children>
+      <HBox>
+         <children>
+            <VBox prefHeight="600.0" prefWidth="350.0">
+               <children>
+                  <ImageView fx:id="leftImg" fitHeight="600.0" fitWidth="350.0" pickOnBounds="true" preserveRatio="true" />
+               </children>
+            </VBox>
+            <VBox maxHeight="400.0" minHeight="600.0" minWidth="400.0" prefHeight="600.0" prefWidth="450.0">
+               <children>
+                  <Separator opacity="0.0" prefHeight="30.0" prefWidth="600.0" />
+                  <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <ImageView fx:id="logoImg" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                           <HBox.margin>
+                              <Insets bottom="25.0" top="40.0" />
+                           </HBox.margin></ImageView>
+                        <Separator opacity="0.0" orientation="VERTICAL" prefHeight="200.0" prefWidth="50.0" />
+                        <VBox fx:id="prova" alignment="TOP_RIGHT" prefHeight="215.0" prefWidth="104.0">
+                           <children>
+                              <HBox prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <Button fx:id="reduceButton" alignment="CENTER" mnemonicParsing="false" onAction="#reduceWindow" prefHeight="25.0" prefWidth="50.0" text="_">
+                                       <font>
+                                          <Font name="System Bold" size="18.0" />
+                                       </font>
+                                       <padding>
+                                          <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                       </padding>
+                                       <HBox.margin>
+                                          <Insets left="10.0" top="10.0" />
+                                       </HBox.margin>
+                                    </Button>
+                                    <Separator opacity="0.0" orientation="VERTICAL" prefHeight="200.0" prefWidth="20.0" />
+                                    <Button fx:id="closeButton" alignment="CENTER" mnemonicParsing="false" onAction="#closeWindow" prefHeight="25.0" prefWidth="50.0" text="X">
+                                       <font>
+                                          <Font name="System Bold" size="18.0" />
+                                       </font>
+                                       <padding>
+                                          <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                       </padding>
+                                       <HBox.margin>
+                                          <Insets right="10.0" top="10.0" />
+                                       </HBox.margin>
+                                    </Button>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+                  <Separator maxHeight="60.0" minHeight="60.0" opacity="0.0" prefHeight="60.0" prefWidth="200.0" />
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <TextField fx:id="usernameField" alignment="CENTER" maxWidth="-Infinity" prefHeight="40.0" prefWidth="400.0" promptText="Username">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </TextField>
+                     </children>
+                  </HBox>
+                  <Separator minHeight="20.0" opacity="0.0" prefHeight="20.0" prefWidth="200.0" />
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <TextField fx:id="passwordField" alignment="CENTER" maxWidth="-Infinity" prefHeight="40.0" prefWidth="400.0" promptText="Password">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </TextField>
+                     </children>
+                  </HBox>
+                  <Separator opacity="0.0" prefHeight="50.0" prefWidth="200.0" />
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Button fx:id="recuperoPWButton" mnemonicParsing="false" onAction="#recuperoPW" text="Recupero password" underline="true">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Button>
+                        <Separator opacity="0.0" orientation="VERTICAL" prefHeight="200.0" prefWidth="10.0" />
+                        <Button fx:id="loginButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#loginClicked" prefHeight="50.0" prefWidth="214.0" text="Login" textAlignment="CENTER">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </HBox>
+                  <Separator opacity="0.0" prefHeight="20.0" prefWidth="200.0" />
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <VBox alignment="CENTER" prefHeight="97.0" prefWidth="333.0">
+                           <children>
+                              <Separator prefHeight="10.0" prefWidth="200.0" />
+                              <Button fx:id="registrazioneButton" mnemonicParsing="false" onAction="#registraUtente" text="Non hai un account? Registrati" underline="true">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Button>
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>
