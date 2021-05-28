@@ -12,6 +12,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 
 import javafx.scene.control.Button;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -20,7 +21,7 @@ import javafx.stage.Stage;
 
 public class LoginController {
 
-	private Stage stage;
+	
 	  
 
     @FXML
@@ -42,8 +43,7 @@ public class LoginController {
     private Button loginButton;
 
     @FXML
-    private TextField passwordField;
-    
+    private PasswordField passwordField;
     @FXML
     private ImageView leftImg;
     
@@ -53,34 +53,39 @@ public class LoginController {
     @FXML
     private Button closeButton;
     
-    public void addStage(Stage stage) {
-    	this.stage=stage;
-    	
-    }
+    
     @FXML
     void reduceWindow(ActionEvent event) {
-         stage.setIconified(true);
+    	 SceneHandler.getIstance().iconified();
+    	 
+  
     }
 
     @FXML
     void closeWindow(ActionEvent event) {
-          stage.close();
+         SceneHandler.getIstance().close();
     }
     
     @FXML
     void loginClicked(ActionEvent event) {
-        Client.getInstance();
+      Client.getInstance();
+       
         
        }
     @FXML
     void recuperoPW(ActionEvent event) {
-    	SceneHandler.getIstance().setCurrent("Registrazione");
+    	
     }
     
 
     @FXML
     void registraUtente(ActionEvent event) {
-
+    	 try {
+ 			SceneHandler.getIstance().setRegistrazione();
+ 		} catch (Exception e) {
+ 			// TODO Auto-generated catch block
+ 			e.printStackTrace();
+ 		}
     }
 
    
@@ -88,7 +93,7 @@ public class LoginController {
     	
     	 
     	 Image bgLeft= new Image(getClass().getResourceAsStream("/img/bgl.png"));
-    	Image logo=new Image(getClass().getResourceAsStream("/icons/logo.jpg"));
+    	Image logo=new Image(getClass().getResourceAsStream("/img/logo.png"));
          logoImg.setImage(logo);
          leftImg.setImage(bgLeft);
         

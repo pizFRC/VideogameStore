@@ -32,6 +32,13 @@
 -fx-font-size:18;
 }
 
+#topPane{
+-fx-text-fill:white;
+-fx-font-weight:bold;
+-fx-background-color:#c45442;
+
+}
+
 .text-field {
     -fx-background-color: #a9a9a9 , white , white;
     -fx-background-insets: 0 -1 -1 -1, 0 0 0 0, 0 -1 3 -1;
@@ -41,6 +48,11 @@
     -fx-background-color: #a9a9a9 , white , white;
     -fx-background-insets: 0 -1 -1 -1, 0 0 0 0, 0 -1 3 -1;
 }
+.password-field{
+    -fx-background-color: #a9a9a9 , white , white;
+    -fx-background-insets: 0 -1 -1 -1, 0 0 0 0, 0 -1 3 -1;
+}
+
 
 
 

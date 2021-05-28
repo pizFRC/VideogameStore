@@ -22,14 +22,9 @@
                   <Separator opacity="0.0" prefHeight="30.0" prefWidth="600.0" />
                   <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <ImageView fx:id="logoImg" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-                           <HBox.margin>
-                              <Insets bottom="25.0" top="40.0" />
-                           </HBox.margin></ImageView>
-                        <Separator opacity="0.0" orientation="VERTICAL" prefHeight="200.0" prefWidth="50.0" />
-                        <VBox fx:id="prova" alignment="TOP_RIGHT" prefHeight="215.0" prefWidth="104.0">
+                        <VBox alignment="TOP_RIGHT" prefHeight="131.0" prefWidth="450.0">
                            <children>
-                              <HBox prefHeight="100.0" prefWidth="200.0">
+                              <HBox alignment="TOP_RIGHT" prefHeight="100.0" prefWidth="200.0">
                                  <children>
                                     <Button fx:id="reduceButton" alignment="CENTER" mnemonicParsing="false" onAction="#reduceWindow" prefHeight="25.0" prefWidth="50.0" text="_">
                                        <font>
@@ -56,11 +51,17 @@
                                     </Button>
                                  </children>
                               </HBox>
+                              <Separator minHeight="30.0" opacity="0.0" prefHeight="30.0" prefWidth="200.0" />
+                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <ImageView fx:id="logoImg" fitHeight="250.0" fitWidth="448.0" pickOnBounds="true" preserveRatio="true" />
+                                 </children>
+                              </HBox>
                            </children>
                         </VBox>
                      </children>
                   </HBox>
-                  <Separator maxHeight="60.0" minHeight="60.0" opacity="0.0" prefHeight="60.0" prefWidth="200.0" />
+                  <Separator maxHeight="60.0" minHeight="22.0" opacity="0.0" prefHeight="22.0" prefWidth="450.0" />
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                      <children>
                         <TextField fx:id="usernameField" alignment="CENTER" maxWidth="-Infinity" prefHeight="40.0" prefWidth="400.0" promptText="Username">
@@ -73,11 +74,11 @@
                   <Separator minHeight="20.0" opacity="0.0" prefHeight="20.0" prefWidth="200.0" />
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <TextField fx:id="passwordField" alignment="CENTER" maxWidth="-Infinity" prefHeight="40.0" prefWidth="400.0" promptText="Password">
+                        <PasswordField fx:id="passwordField" alignment="CENTER" prefHeight="40.0" prefWidth="400.0" promptText="Password">
                            <font>
                               <Font size="18.0" />
                            </font>
-                        </TextField>
+                        </PasswordField>
                      </children>
                   </HBox>
                   <Separator opacity="0.0" prefHeight="50.0" prefWidth="200.0" />

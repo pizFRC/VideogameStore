@@ -1,12 +1,164 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.RegistrationController">
    <children>
-      <Button layoutX="196.0" layoutY="156.0" mnemonicParsing="false" text="Button" />
+      <VBox prefHeight="600.0" prefWidth="600.0">
+         <children>
+            <Pane prefHeight="60.0" prefWidth="600.0">
+               <children>
+                  <HBox fx:id="topPane" alignment="CENTER" minHeight="-Infinity" prefHeight="60.0" prefWidth="600.0">
+                     <children>
+                        <Label fx:id="labelRegistration" text="Registration">
+                           <font>
+                              <Font size="36.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+               </children>
+            </Pane>
+            <Separator opacity="0.0" prefHeight="20.0" prefWidth="200.0" />
+            <HBox alignment="CENTER" prefHeight="486.0" prefWidth="600.0">
+               <children>
+                  <VBox minHeight="-Infinity" prefHeight="510.0" prefWidth="596.0">
+                     <children>
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <Label alignment="CENTER" prefHeight="57.0" prefWidth="144.0" text="Username" textAlignment="CENTER" wrapText="true">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                              <TextField fx:id="usernameField" alignment="CENTER" prefHeight="35.0" prefWidth="400.0" promptText="Username" />
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <Label alignment="CENTER" prefHeight="57.0" prefWidth="144.0" text="Email" textAlignment="CENTER" wrapText="true">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                              <TextField fx:id="emailField" alignment="CENTER" prefHeight="35.0" prefWidth="400.0" promptText="email@domain.com" />
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <Label alignment="CENTER" prefHeight="57.0" prefWidth="144.0" text="Phone" textAlignment="CENTER" wrapText="true">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                              <TextField fx:id="areaCodeField" alignment="CENTER" prefHeight="35.0" prefWidth="100.0" promptText="Area code" />
+                              <Separator opacity="0.0" orientation="VERTICAL" prefHeight="200.0" prefWidth="5.0" />
+                              <TextField fx:id="numberField" alignment="CENTER" prefHeight="35.0" prefWidth="300.0" promptText="Number" />
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <Label alignment="CENTER" prefHeight="57.0" prefWidth="144.0" text="Birthday" textAlignment="CENTER" wrapText="true">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                              <DatePicker fx:id="datePicker" prefHeight="35.0" prefWidth="400.0" />
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="25.0" prefWidth="145.0" text="Password" textAlignment="CENTER" wrapText="true">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                              <PasswordField fx:id="passwordField" alignment="CENTER" onKeyPressed="#textChanged" prefHeight="35.0" prefWidth="400.0" promptText="Password" />
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <Label alignment="CENTER" prefHeight="57.0" prefWidth="146.0" text="Confirm password" textAlignment="CENTER" wrapText="true" />
+                              <PasswordField fx:id="confirmPWField" alignment="CENTER" prefHeight="35.0" prefWidth="400.0" promptText="Confirm Password" />
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <VBox alignment="TOP_CENTER" prefHeight="112.0" prefWidth="455.0">
+                                 <children>
+                                    <Label prefHeight="18.0" prefWidth="450.0" text="Password must contain at least one digit [0-9].">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <Separator minHeight="5.0" prefHeight="5.0" prefWidth="200.0" />
+                                    <Label prefHeight="20.0" prefWidth="507.0" text="Password must contain at least one lowercase character [a-z].">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <Separator minHeight="5.0" prefHeight="5.0" prefWidth="200.0" />
+                                    <Label prefHeight="20.0" prefWidth="489.0" text="Password must contain at least one uppercase character [A-Z]">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <Separator prefHeight="10.0" prefWidth="200.0" />
+                                    <Label prefHeight="20.0" prefWidth="511.0" text="Password must contain at least one special character">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <Separator prefHeight="10.0" prefWidth="200.0" />
+                                    <Label prefHeight="20.0" prefWidth="487.0" text="Password length  8 characters and a maximum of 20 characters">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="91.0" prefWidth="596.0">
+                           <children>
+                              <VBox alignment="CENTER" prefHeight="67.0" prefWidth="413.0">
+                                 <children>
+                                    <Separator minHeight="10.0" prefHeight="10.0" prefWidth="200.0" />
+                                    <CheckBox fx:id="privacyCheckBox" mnemonicParsing="false" prefHeight="18.0" prefWidth="316.0" text="Condizioni privacy">
+                                       <font>
+                                          <Font size="16.0" />
+                                       </font>
+                                    </CheckBox>
+                                    <Separator minHeight="20.0" prefHeight="20.0" prefWidth="200.0" />
+                                    <HBox alignment="CENTER" prefHeight="32.0" prefWidth="160.0">
+                                       <children>
+                                          <Button fx:id="backButton" mnemonicParsing="false" onAction="#back" prefHeight="32.0" prefWidth="132.0" text="Back">
+                                             <font>
+                                                <Font size="16.0" />
+                                             </font>
+                                          </Button>
+                                          <Separator orientation="VERTICAL" prefHeight="200.0" prefWidth="10.0" />
+                                          <Button fx:id="confirmButton" mnemonicParsing="false" onAction="#confirmRegistration" prefHeight="40.0" prefWidth="200.0" text="Confirm">
+                                             <font>
+                                                <Font size="16.0" />
+                                             </font>
+                                          </Button>
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" />
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
    </children>
 </AnchorPane>

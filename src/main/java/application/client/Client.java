@@ -5,8 +5,9 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 
-
+import application.SceneHandler;
 import application.client.Client;
+import javafx.scene.control.Alert.AlertType;
 
 
 public class Client implements Runnable{
@@ -21,9 +22,9 @@ public class Client implements Runnable{
 			out=new ObjectOutputStream(socket.getOutputStream());
 		}  catch (IOException e) {
 			//questo riguarda il client e gli mostro che ho problemi di connessione
-			
+			SceneHandler.getIstance().showError("Connessione rifiutata",AlertType.WARNING);
 			//qui posso passare dal controller
-			e.printStackTrace();
+			
 		}
 	}
 	@Override
