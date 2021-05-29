@@ -68,7 +68,8 @@ public class LoginController {
     
     @FXML
     void loginClicked(ActionEvent event) {
-      Client.getInstance();
+      //Client.getInstance();
+    //  SceneHandler.getIstance().setHome();
        
         
        }

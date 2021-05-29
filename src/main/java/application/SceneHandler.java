@@ -33,19 +33,13 @@ private void setCSS() {
 }
 public  void init(Stage stage) throws Exception {
 	  this.stage=stage;
-	FXMLLoader loader=new FXMLLoader(getClass().getResource("/fxml/Login.fxml"));
-	
-	AnchorPane root = (AnchorPane) loader.load();
-	
-	 main=new Scene(root);
-
-	 setCSS();
-    stage.setResizable(false);
-    stage.setScene(main);
+	  stage.initStyle(StageStyle.UNDECORATED);
+	setLogin();
     stage.setTitle("Game Store Management - Login");
-   stage.initStyle(StageStyle.UNDECORATED);
    
+   setCSS();
     stage.show();
+    
 }
 
 
@@ -58,14 +52,14 @@ public void iconified() {
 public  void setRegistrazione() throws Exception {
 	FXMLLoader loader=new FXMLLoader(getClass().getResource("/fxml/Registrazione.fxml"));
 	Parent root = (Parent)loader.load();  
-	
+    main=new Scene(root);
 
-	 
-	main.setRoot(root);
-	stage.setScene(main);
+    setCSS();
+    stage.setScene(main);
+   
+   
 	
-	stage.hide();
-	stage.setResizable(false);
+    stage.setResizable(false);
 	stage.show();
 	
 	
@@ -75,17 +69,18 @@ public  void setLogin() throws Exception {
 	
 	AnchorPane root = (AnchorPane) loader.load();
 	
-	//main.setRoot(root);
-	 main=new Scene(root);
-      setCSS();
-	 //stage.hide();
 	
+	 main=new Scene(root);
+
+	   setCSS();
+	 
+	    
      
 	stage.setScene(main);
 	
 	
 	stage.setResizable(false);
-	
+	 
 	 
 	stage.show();
 	
@@ -97,5 +92,9 @@ public void showError(String message,AlertType tipo) {
 	a.setContentText(message);
 	a.setHeaderText("");
 	a.showAndWait();
+}
+public void setHome() {
+	// TODO Auto-generated method stub
+	
 }
 }

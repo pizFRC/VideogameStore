@@ -6,15 +6,15 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.RegistrationController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="600.0" minWidth="600.0" prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.RegistrationController">
    <children>
-      <VBox prefHeight="600.0" prefWidth="600.0">
+      <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Pane prefHeight="60.0" prefWidth="600.0">
+            <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="60.0" prefWidth="600.0">
                <children>
-                  <HBox fx:id="topPane" alignment="CENTER" minHeight="-Infinity" prefHeight="60.0" prefWidth="600.0">
+                  <HBox fx:id="topPane" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="60.0" prefWidth="600.0">
                      <children>
-                        <Label fx:id="labelRegistration" text="Registration">
+                        <Label fx:id="labelRegistration" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="46.0" prefWidth="220.0" text="Registration">
                            <font>
                               <Font size="36.0" />
                            </font>
@@ -24,11 +24,11 @@
                </children>
             </Pane>
             <Separator opacity="0.0" prefHeight="20.0" prefWidth="200.0" />
-            <HBox alignment="CENTER" prefHeight="486.0" prefWidth="600.0">
+            <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="515.0" prefWidth="600.0">
                <children>
-                  <VBox minHeight="-Infinity" prefHeight="510.0" prefWidth="596.0">
+                  <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="510.0" prefWidth="596.0">
                      <children>
-                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                        <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="600.0">
                            <children>
                               <Label alignment="CENTER" prefHeight="57.0" prefWidth="144.0" text="Username" textAlignment="CENTER" wrapText="true">
                                  <font>
@@ -38,7 +38,7 @@
                               <TextField fx:id="usernameField" alignment="CENTER" prefHeight="35.0" prefWidth="400.0" promptText="Username" />
                            </children>
                         </HBox>
-                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                        <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="600.0">
                            <children>
                               <Label alignment="CENTER" prefHeight="57.0" prefWidth="144.0" text="Email" textAlignment="CENTER" wrapText="true">
                                  <font>
@@ -48,7 +48,7 @@
                               <TextField fx:id="emailField" alignment="CENTER" prefHeight="35.0" prefWidth="400.0" promptText="email@domain.com" />
                            </children>
                         </HBox>
-                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                        <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="600.0">
                            <children>
                               <Label alignment="CENTER" prefHeight="57.0" prefWidth="144.0" text="Phone" textAlignment="CENTER" wrapText="true">
                                  <font>
@@ -60,7 +60,7 @@
                               <TextField fx:id="numberField" alignment="CENTER" prefHeight="35.0" prefWidth="300.0" promptText="Number" />
                            </children>
                         </HBox>
-                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                        <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="600.0">
                            <children>
                               <Label alignment="CENTER" prefHeight="57.0" prefWidth="144.0" text="Birthday" textAlignment="CENTER" wrapText="true">
                                  <font>
@@ -70,23 +70,23 @@
                               <DatePicker fx:id="datePicker" prefHeight="35.0" prefWidth="400.0" />
                            </children>
                         </HBox>
-                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                        <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="600.0">
                            <children>
                               <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="25.0" prefWidth="145.0" text="Password" textAlignment="CENTER" wrapText="true">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
                               </Label>
-                              <PasswordField fx:id="passwordField" alignment="CENTER" onKeyPressed="#textChanged" prefHeight="35.0" prefWidth="400.0" promptText="Password" />
+                              <PasswordField fx:id="passwordField" alignment="CENTER" prefHeight="35.0" prefWidth="400.0" promptText="Password" />
                            </children>
                         </HBox>
-                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                        <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="600.0">
                            <children>
                               <Label alignment="CENTER" prefHeight="57.0" prefWidth="146.0" text="Confirm password" textAlignment="CENTER" wrapText="true" />
                               <PasswordField fx:id="confirmPWField" alignment="CENTER" prefHeight="35.0" prefWidth="400.0" promptText="Confirm Password" />
                            </children>
                         </HBox>
-                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                        <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="120.0" prefWidth="600.0">
                            <children>
                               <VBox alignment="TOP_CENTER" prefHeight="112.0" prefWidth="455.0">
                                  <children>
@@ -128,7 +128,7 @@
                               <VBox alignment="CENTER" prefHeight="67.0" prefWidth="413.0">
                                  <children>
                                     <Separator minHeight="10.0" prefHeight="10.0" prefWidth="200.0" />
-                                    <CheckBox fx:id="privacyCheckBox" mnemonicParsing="false" prefHeight="18.0" prefWidth="316.0" text="Condizioni privacy">
+                                    <CheckBox fx:id="privacyCheckBox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="18.0" prefWidth="316.0" text="Condizioni privacy">
                                        <font>
                                           <Font size="16.0" />
                                        </font>

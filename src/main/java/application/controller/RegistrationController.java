@@ -62,34 +62,52 @@ public class RegistrationController {
 
     public void initialize() {
     	System.out.println("initr");
+    	confirmButton.setDisable(true);
     	passwordField.setOnKeyPressed(new EventHandler<KeyEvent>() {
 
 			@Override
 			public void handle(KeyEvent event) {
 				if(!controllaCriteri() && !passwordField.getText().isEmpty()) {
 					passwordField.setStyle("-fx-background-color:  #c00000;");
+					if(!confirmButton.isDisable())
+						confirmButton.setDisable(true);
 				}else
 					passwordField.setStyle("-fx-background-color: white;");
 				
 			}
     		
     	});
-    	confirmPWField.setOnKeyPressed(new EventHandler<KeyEvent>() {
+    	confirmPWField.setOnKeyReleased(new EventHandler<KeyEvent>() {
 
 			@Override
 			public void handle(KeyEvent event) {
-				if(!controllaCriteri()|| confirmPWField.getText().equals(passwordField.getText())&& !passwordField.getText().isEmpty()) {
+				if(!controllaCriteri()  && !(passwordField.getText().length()==confirmPWField.getText().length())) {
 					confirmPWField.setStyle("-fx-background-color: #c00000;");
-				}else
-					confirmPWField.setStyle("-fx-background-color: white;");
+					confirmButton.setDisable(true);
+					
+					
+			
+				}else {
+					
 				
+				if(confirmPWField.getText().equals(passwordField.getText())) {
+					confirmPWField.setStyle("-fx-background-color: white;");
+					confirmButton.setDisable(false);
+				}
+				else {
+					confirmPWField.setStyle("-fx-background-color: #c00000;");
+					confirmButton.setDisable(true);
+				}
+				
+				}
+			
 			}
-    		
     	});
     	
-    }
+    	
     
-
+    	
+    }
     @FXML
     void confirmRegistration(ActionEvent event) {
 
@@ -104,10 +122,7 @@ public class RegistrationController {
 		e.printStackTrace();
 	}
     }
-    @FXML
-    void textChanged(ActionEvent event) {
-   //  System.out.println("testo");
-    }
+    
 
    
 
@@ -117,5 +132,6 @@ public class RegistrationController {
     return  dv.parsePassword(  passwordField.getText());
   
     }
+
 
 }
