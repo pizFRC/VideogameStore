@@ -1,20 +1,36 @@
 .button{
--fx-background-color:#c45442;
--fx-background-radius: 30;
+-fx-background-color: #123455;
+-fx-text-fill:white;
 }
 .button:hover{
 
- 
+ -fx-background-color: #5799DB;
 -fx-text-fill:white;
 
+
+
+}
+.text-field {
+    -fx-background-color: #a9a9a9 , white , white;
+    -fx-background-insets: 0 -1 -1 -1, 0 0 0 0, 0 -1 3 -1;
+}
+
+.text-field:focused {
+    -fx-background-color: #a9a9a9 , white , white;
+    -fx-background-insets: 0 -1 -1 -1, 0 0 0 0, 0 -1 3 -1;
+}
+.password-field{
+    -fx-background-color: #a9a9a9 , white , white;
+    -fx-background-insets: 0 -1 -1 -1, 0 0 0 0, 0 -1 3 -1;
 }
 
 #reduceButton , #closeButton{
--fx-background-color:white;
+-fx-text-fill:black;
+-fx-background-color: transparent;
 }
 #reduceButton:hover,#closeButton:hover{
 -fx-text-fill:white;
--fx-background-color:#c45442;
+-fx-background-color: #5799DB;
 }
 #registrazioneButton,#recuperoPWButton{
 -fx-background-color:white;
@@ -36,23 +52,79 @@
 -fx-text-fill:white;
 -fx-font-weight:bold;
 -fx-background-color:#c45442;
+}
+
+#loginButton:hover{
+-fx-background-color: #5799DB;
+-fx-text-fill:white;
+-fx-font-weight:bold;
+-fx-background-radius: 15;
+}
+
+/*------------------------REGISTRAZIONE--------------------------------------------*/
+#backButton{
+-fx-background-color: #123455;
+-fx-text-fill:white;
+-fx-font-weight:bold;
+-fx-background-radius: 15;
+
+}
+#backButton:hover{
+-fx-background-color: #5799DB;
+}
+#confirmButton{
+-fx-background-color: #123455;
+-fx-text-fill:white;
+-fx-font-weight:bold;
+-fx-background-radius: 15;
+}
+#confirmButton:hover{
+-fx-background-color: #5799DB;
+}
+#imgButton{
+-fx-background-color:transparent;
+-fx-background-radius: 50;
+
+}
+#imgButton:hover{
+-fx-background-color:grey;
+-fx-background-radius: 100;
+-fx-scale-y: 1.1;
+-fx-scale-x: 1.1;
+
 
 }
 
-.text-field {
-    -fx-background-color: #a9a9a9 , white , white;
-    -fx-background-insets: 0 -1 -1 -1, 0 0 0 0, 0 -1 3 -1;
+
+/*
+-----------------HOME---------------------------------------------------------
+*/
+#downloadButton:hover,#chatButton:hover,#libreriaButton:hover,#pubblicatiButton:hover,#homeButton:hover,#impostazioniButton:hover{
+-fx-background-color: #dfa298;
+-fx-scale-y: 1.1;
+-fx-scale-x: 1.1;
+-fx-background-radius: 0;
+
+
 }
 
-.text-field:focused {
-    -fx-background-color: #a9a9a9 , white , white;
-    -fx-background-insets: 0 -1 -1 -1, 0 0 0 0, 0 -1 3 -1;
+
+#downloadButton,#chatButton,#libreriaButton,#pubblicatiButton,#homeButton,#impostazioniButton{
+-fx-background-color:transparent;
+-fx-text-fill:white;
+
 }
-.password-field{
-    -fx-background-color: #a9a9a9 , white , white;
-    -fx-background-insets: 0 -1 -1 -1, 0 0 0 0, 0 -1 3 -1;
+#profileImgButton{
+-fx-background-radius:15em;
+}
+#profileImgButton:hover{
+-fx-background-color: #dfa298;
+        -fx-scale-y: 1.1;
+-fx-scale-x: 1.1;
 }
 
+#vboxLeft{
+-fx-background-color:#c45442;
 
-
+}
 

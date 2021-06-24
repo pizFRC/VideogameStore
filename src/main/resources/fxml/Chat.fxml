@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.shape.*?>
+<?import de.jensd.fx.glyphs.fontawesome.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane fx:id="root" nodeOrientation="LEFT_TO_RIGHT" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.ChatController">
+   <center>
+      <ScrollPane fx:id="scrollPane" hbarPolicy="NEVER" vbarPolicy="ALWAYS" BorderPane.alignment="CENTER">
+         <content>
+            <VBox fx:id="messaggiVBox" fillWidth="false" minWidth="600.0" spacing="15.0" style="-fx-border-color: black;" HBox.hgrow="ALWAYS">
+               <padding>
+                  <Insets bottom="10.0" right="10.0" top="10.0" />
+               </padding>
+               <children>
+                  <Separator fx:id="sep" opacity="0.0" prefHeight="5.0" prefWidth="576.0" VBox.vgrow="ALWAYS" />
+               </children>
+            </VBox>
+         </content>
+         <BorderPane.margin>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </BorderPane.margin></ScrollPane>
+   </center>
+   <bottom>
+      <HBox alignment="CENTER" BorderPane.alignment="CENTER">
+         <children>
+            <TextArea fx:id="testoMessaggio" promptText="Scrivi un messaggio..." text="&#10;">
+               <HBox.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </HBox.margin></TextArea>
+            <Button mnemonicParsing="false" onAction="#sendMessage" HBox.hgrow="ALWAYS">
+               <HBox.margin>
+                  <Insets bottom="10.0" right="20.0" top="10.0" />
+               </HBox.margin>
+               <graphic>
+                  <FontAwesomeIcon fill="LIME" iconName="CHEVRON_CIRCLE_RIGHT" size="2em" />
+               </graphic>
+            </Button>
+         </children>
+      </HBox>
+   </bottom>
+</BorderPane>

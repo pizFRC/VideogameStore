@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import de.jensd.fx.glyphs.fontawesome.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.ErrorPageController">
+   <center>
+      <HBox alignment="CENTER" prefHeight="261.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+         <children>
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
+               <children>
+                  <HBox alignment="CENTER">
+                     <children>
+                        <FontAwesomeIcon iconName="GEARS" size="4em" wrappingWidth="72.57142639160156" />
+                        <Label alignment="CENTER" prefHeight="49.0" prefWidth="366.0" text="Errore di connessione">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <Label alignment="CENTER" prefHeight="38.0" prefWidth="491.0" text="La connessione potrebbe essere assente">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+                  <Label alignment="CENTER" prefHeight="38.0" prefWidth="491.0" text="Riprova più tardi" VBox.vgrow="ALWAYS">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+                  <HBox alignment="CENTER" prefHeight="136.0" prefWidth="600.0">
+                     <children>
+                        <Button fx:id="exitButton" mnemonicParsing="false" onAction="#exit" prefHeight="94.0" prefWidth="133.0">
+                           <graphic>
+                              <FontAwesomeIcon iconName="SIGN_OUT" size="4em" />
+                           </graphic>
+                        </Button>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+   </center>
+</BorderPane>

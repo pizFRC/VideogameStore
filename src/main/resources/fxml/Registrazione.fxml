@@ -1,120 +1,117 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.*?>
+<?import de.jensd.fx.glyphs.fontawesome.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="600.0" minWidth="600.0" prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.RegistrationController">
+<AnchorPane prefHeight="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.RegistrationController">
    <children>
-      <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <VBox prefHeight="813.0" prefWidth="638.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="60.0" prefWidth="600.0">
+            <Pane prefHeight="64.0" style="-fx-background-color: #123455;" VBox.vgrow="ALWAYS">
                <children>
-                  <HBox fx:id="topPane" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="60.0" prefWidth="600.0">
-                     <children>
-                        <Label fx:id="labelRegistration" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="46.0" prefWidth="220.0" text="Registration">
-                           <font>
-                              <Font size="36.0" />
-                           </font>
-                        </Label>
-                     </children>
-                  </HBox>
+                  <Label fx:id="labelRegistration" minHeight="-Infinity" minWidth="-Infinity" prefHeight="46.0" prefWidth="403.0" text="Registrazione" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="36.0" />
+                     </font>
+                  </Label>
                </children>
             </Pane>
-            <Separator opacity="0.0" prefHeight="20.0" prefWidth="200.0" />
-            <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="515.0" prefWidth="600.0">
+            <Separator opacity="0.0" prefHeight="20.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
+            <HBox alignment="CENTER" VBox.vgrow="ALWAYS">
                <children>
-                  <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="510.0" prefWidth="596.0">
+                  <VBox alignment="CENTER" HBox.hgrow="ALWAYS">
                      <children>
-                        <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="600.0">
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
                            <children>
-                              <Label alignment="CENTER" prefHeight="57.0" prefWidth="144.0" text="Username" textAlignment="CENTER" wrapText="true">
-                                 <font>
-                                    <Font size="14.0" />
-                                 </font>
-                              </Label>
+                              <Button fx:id="imgButton" alignment="CENTER" contentDisplay="TOP" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#chooseImg" prefHeight="150.0" prefWidth="150.0" textAlignment="CENTER" HBox.hgrow="ALWAYS" />
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="600.0" VBox.vgrow="ALWAYS">
+                           <children>
+                              <FontAwesomeIcon iconName="USER" size="2EM" />
+                              <Separator opacity="0.0" orientation="VERTICAL" prefHeight="200.0" prefWidth="20.0" />
                               <TextField fx:id="usernameField" alignment="CENTER" prefHeight="35.0" prefWidth="400.0" promptText="Username" />
                            </children>
                         </HBox>
-                        <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="600.0">
+                        <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="600.0" VBox.vgrow="ALWAYS">
                            <children>
-                              <Label alignment="CENTER" prefHeight="57.0" prefWidth="144.0" text="Email" textAlignment="CENTER" wrapText="true">
-                                 <font>
-                                    <Font size="14.0" />
-                                 </font>
-                              </Label>
+                              <FontAwesomeIcon iconName="ENVELOPE" size="2em" />
+                              <Separator opacity="0.0" orientation="VERTICAL" prefHeight="200.0" prefWidth="20.0" />
                               <TextField fx:id="emailField" alignment="CENTER" prefHeight="35.0" prefWidth="400.0" promptText="email@domain.com" />
                            </children>
                         </HBox>
-                        <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="600.0">
+                        <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="600.0" VBox.vgrow="ALWAYS">
                            <children>
-                              <Label alignment="CENTER" prefHeight="57.0" prefWidth="144.0" text="Phone" textAlignment="CENTER" wrapText="true">
-                                 <font>
-                                    <Font size="14.0" />
-                                 </font>
-                              </Label>
+                              <FontAwesomeIcon iconName="PHONE" size="2em" />
+                              <Separator opacity="0.0" orientation="VERTICAL" prefHeight="50.0" prefWidth="25.0" />
                               <TextField fx:id="areaCodeField" alignment="CENTER" prefHeight="35.0" prefWidth="100.0" promptText="Area code" />
                               <Separator opacity="0.0" orientation="VERTICAL" prefHeight="200.0" prefWidth="5.0" />
                               <TextField fx:id="numberField" alignment="CENTER" prefHeight="35.0" prefWidth="300.0" promptText="Number" />
                            </children>
                         </HBox>
-                        <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="600.0">
+                        <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="600.0" VBox.vgrow="ALWAYS">
                            <children>
-                              <Label alignment="CENTER" prefHeight="57.0" prefWidth="144.0" text="Birthday" textAlignment="CENTER" wrapText="true">
-                                 <font>
-                                    <Font size="14.0" />
-                                 </font>
-                              </Label>
+                              <FontAwesomeIcon iconName="BIRTHDAY_CAKE" size="2em" />
+                              <Separator opacity="0.0" orientation="VERTICAL" prefHeight="200.0" prefWidth="20.0" />
                               <DatePicker fx:id="datePicker" prefHeight="35.0" prefWidth="400.0" />
                            </children>
                         </HBox>
-                        <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="600.0">
+                        <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="600.0" VBox.vgrow="ALWAYS">
                            <children>
-                              <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="25.0" prefWidth="145.0" text="Password" textAlignment="CENTER" wrapText="true">
-                                 <font>
-                                    <Font size="14.0" />
-                                 </font>
-                              </Label>
+                              <FontAwesomeIcon iconName="KEY" size="2em" />
+                              <Separator opacity="0.0" orientation="VERTICAL" prefHeight="200.0" prefWidth="20.0" />
                               <PasswordField fx:id="passwordField" alignment="CENTER" prefHeight="35.0" prefWidth="400.0" promptText="Password" />
                            </children>
                         </HBox>
-                        <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="600.0">
+                        <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="600.0" VBox.vgrow="ALWAYS">
                            <children>
-                              <Label alignment="CENTER" prefHeight="57.0" prefWidth="146.0" text="Confirm password" textAlignment="CENTER" wrapText="true" />
+                              <FontAwesomeIcon iconName="KEY" size="2em" />
+                              <Separator opacity="0.0" orientation="VERTICAL" prefHeight="200.0" prefWidth="20.0" />
                               <PasswordField fx:id="confirmPWField" alignment="CENTER" prefHeight="35.0" prefWidth="400.0" promptText="Confirm Password" />
                            </children>
                         </HBox>
-                        <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="120.0" prefWidth="600.0">
+                        <Separator minHeight="20.0" prefHeight="20.0" prefWidth="200.0" />
+                        <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="120.0" prefWidth="600.0" VBox.vgrow="ALWAYS">
                            <children>
-                              <VBox alignment="TOP_CENTER" prefHeight="112.0" prefWidth="455.0">
+                              <Separator opacity="0.0" orientation="VERTICAL" prefHeight="120.0" prefWidth="90.0" />
+                              <VBox alignment="CENTER_LEFT" prefHeight="112.0" prefWidth="455.0" HBox.hgrow="ALWAYS">
                                  <children>
-                                    <Label prefHeight="18.0" prefWidth="450.0" text="Password must contain at least one digit [0-9].">
+                                    <Label prefHeight="18.0" prefWidth="450.0" text="La password deve contenere almeno:">
                                        <font>
                                           <Font size="14.0" />
                                        </font>
                                     </Label>
                                     <Separator minHeight="5.0" prefHeight="5.0" prefWidth="200.0" />
-                                    <Label prefHeight="20.0" prefWidth="507.0" text="Password must contain at least one lowercase character [a-z].">
+                                    <Label prefHeight="7.0" prefWidth="507.0" text=" - un carattere minuscolo [a-z].">
                                        <font>
                                           <Font size="14.0" />
                                        </font>
                                     </Label>
                                     <Separator minHeight="5.0" prefHeight="5.0" prefWidth="200.0" />
-                                    <Label prefHeight="20.0" prefWidth="489.0" text="Password must contain at least one uppercase character [A-Z]">
+                                    <Label prefHeight="20.0" prefWidth="489.0" text=" -un carattere maiuscolo [A-Z]">
                                        <font>
                                           <Font size="14.0" />
                                        </font>
                                     </Label>
                                     <Separator prefHeight="10.0" prefWidth="200.0" />
-                                    <Label prefHeight="20.0" prefWidth="511.0" text="Password must contain at least one special character">
+                                    <Label prefHeight="20.0" prefWidth="511.0" text="- un carattere speciale">
                                        <font>
                                           <Font size="14.0" />
                                        </font>
                                     </Label>
                                     <Separator prefHeight="10.0" prefWidth="200.0" />
-                                    <Label prefHeight="20.0" prefWidth="487.0" text="Password length  8 characters and a maximum of 20 characters">
+                                    <Label prefHeight="20.0" prefWidth="507.0" text=" -  una cifra [0-9].">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <Separator opacity="0.0" prefHeight="10.0" prefWidth="200.0" />
+                                    <Label prefHeight="20.0" prefWidth="487.0" text="Lunghezza : minimo 8 caratteri massimo 20">
                                        <font>
                                           <Font size="14.0" />
                                        </font>
@@ -123,9 +120,9 @@
                               </VBox>
                            </children>
                         </HBox>
-                        <HBox alignment="CENTER" prefHeight="91.0" prefWidth="596.0">
+                        <HBox alignment="CENTER" prefHeight="103.0" prefWidth="596.0" VBox.vgrow="ALWAYS">
                            <children>
-                              <VBox alignment="CENTER" prefHeight="67.0" prefWidth="413.0">
+                              <VBox alignment="CENTER" prefHeight="67.0" prefWidth="413.0" HBox.hgrow="ALWAYS">
                                  <children>
                                     <Separator minHeight="10.0" prefHeight="10.0" prefWidth="200.0" />
                                     <CheckBox fx:id="privacyCheckBox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="18.0" prefWidth="316.0" text="Condizioni privacy">
@@ -134,22 +131,27 @@
                                        </font>
                                     </CheckBox>
                                     <Separator minHeight="20.0" prefHeight="20.0" prefWidth="200.0" />
-                                    <HBox alignment="CENTER" prefHeight="32.0" prefWidth="160.0">
+                                    <HBox alignment="CENTER" prefHeight="32.0" prefWidth="160.0" VBox.vgrow="ALWAYS">
                                        <children>
-                                          <Button fx:id="backButton" mnemonicParsing="false" onAction="#back" prefHeight="32.0" prefWidth="132.0" text="Back">
+                                          <Button fx:id="backButton" mnemonicParsing="false" onAction="#back" prefHeight="60.0" prefWidth="161.0" text="Indietro">
                                              <font>
                                                 <Font size="16.0" />
                                              </font>
+                                             <graphic>
+                                                <FontAwesomeIcon fill="WHITE" iconName="REPLY" size="3em" />
+                                             </graphic>
                                           </Button>
                                           <Separator orientation="VERTICAL" prefHeight="200.0" prefWidth="10.0" />
-                                          <Button fx:id="confirmButton" mnemonicParsing="false" onAction="#confirmRegistration" prefHeight="40.0" prefWidth="200.0" text="Confirm">
+                                          <Button fx:id="confirmButton" mnemonicParsing="false" onAction="#confirmRegistration" prefHeight="40.0" prefWidth="200.0" text="Conferma">
                                              <font>
                                                 <Font size="16.0" />
                                              </font>
+                                             <graphic>
+                                                <FontAwesomeIcon fill="WHITE" iconName="CHECK_CIRCLE" size="3em" />
+                                             </graphic>
                                           </Button>
                                        </children>
                                     </HBox>
-                                    <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" />
                                  </children>
                               </VBox>
                            </children>

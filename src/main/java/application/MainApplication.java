@@ -1,5 +1,6 @@
 package application;
 
+import application.client.Client;
 import javafx.application.Application;
 
 import javafx.stage.Stage;
@@ -11,7 +12,7 @@ public class MainApplication extends Application {
 	public void start(Stage primaryStage) throws Exception {
 		
 
-		SceneHandler.getIstance().init(primaryStage);
+		SceneHandler.getInstance().init(primaryStage);
 		
 		
 		

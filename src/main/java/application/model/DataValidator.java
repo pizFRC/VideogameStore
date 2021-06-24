@@ -9,27 +9,26 @@ public class DataValidator {
 		
 	}
 	
-	public boolean parseEmail(String email) {
+	public static boolean parseEmail(String email) {
 			
-		return  Pattern.matches("[a-zA-Z]+@[a-zA-Z]+\\.(com|it)",email);
+		String regex="^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,6}$";
+		return  Pattern.matches(regex,email);
 
 	}
 	
-	public boolean parsePassword(String password) {
-    
+	public static boolean parsePassword(String password) {
+		
 		String regex ="^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()_+\\-=\\[\\]{};’:”\\|,.<>\\/?])(?=\\S+$).{7,}$";
 	    return Pattern.matches(regex, password);
 	}
 	
 	
-	public boolean parseUsername(String username) {
-		boolean lenghtMin=username.length()>4;
+	public static boolean parseUsername(String username) {
 		
-		boolean lenghtMax=username.length()<16;
 		
-		return  Pattern.matches("[a-zA-Z0-9]+",username)  && lenghtMin && lenghtMax;
+		return  Pattern.matches("^[A-Za-z]\\w{5,20}$",username) ;
 	}
-	public boolean parsePhone(String numberPhone) {
+	public static boolean parsePhone(String numberPhone) {
 		boolean lenght=numberPhone.length()==10;
 		return  Pattern.matches("[0-9]{10}",numberPhone) && lenght;
 		
