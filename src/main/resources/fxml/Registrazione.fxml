@@ -12,23 +12,25 @@
    <children>
       <VBox prefHeight="813.0" prefWidth="638.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Pane prefHeight="64.0" style="-fx-background-color: #123455;" VBox.vgrow="ALWAYS">
+            <Pane prefHeight="64.0" style="-fx-background-color: #1B262C;" VBox.vgrow="ALWAYS">
                <children>
-                  <Label fx:id="labelRegistration" minHeight="-Infinity" minWidth="-Infinity" prefHeight="46.0" prefWidth="403.0" text="Registrazione" textFill="WHITE">
+                  <Label fx:id="labelRegistration" alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" prefHeight="83.0" prefWidth="638.0" text="Registrazione" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="36.0" />
                      </font>
                   </Label>
                </children>
             </Pane>
-            <Separator opacity="0.0" prefHeight="20.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
             <HBox alignment="CENTER" VBox.vgrow="ALWAYS">
                <children>
                   <VBox alignment="CENTER" HBox.hgrow="ALWAYS">
                      <children>
-                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+                        <HBox alignment="CENTER" prefHeight="148.0" prefWidth="638.0" VBox.vgrow="ALWAYS">
                            <children>
-                              <Button fx:id="imgButton" alignment="CENTER" contentDisplay="TOP" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#chooseImg" prefHeight="150.0" prefWidth="150.0" textAlignment="CENTER" HBox.hgrow="ALWAYS" />
+                              <Button fx:id="imgButton" alignment="CENTER" contentDisplay="TOP" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#chooseImg" prefHeight="128.0" prefWidth="137.0" textAlignment="CENTER" HBox.hgrow="ALWAYS">
+                                 <HBox.margin>
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                 </HBox.margin></Button>
                            </children>
                         </HBox>
                         <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="600.0" VBox.vgrow="ALWAYS">
@@ -124,14 +126,15 @@
                            <children>
                               <VBox alignment="CENTER" prefHeight="67.0" prefWidth="413.0" HBox.hgrow="ALWAYS">
                                  <children>
-                                    <Separator minHeight="10.0" prefHeight="10.0" prefWidth="200.0" />
                                     <CheckBox fx:id="privacyCheckBox" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="18.0" prefWidth="316.0" text="Condizioni privacy">
                                        <font>
                                           <Font size="16.0" />
                                        </font>
+                                       <VBox.margin>
+                                          <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                       </VBox.margin>
                                     </CheckBox>
-                                    <Separator minHeight="20.0" prefHeight="20.0" prefWidth="200.0" />
-                                    <HBox alignment="CENTER" prefHeight="32.0" prefWidth="160.0" VBox.vgrow="ALWAYS">
+                                    <HBox alignment="CENTER" prefHeight="32.0" prefWidth="160.0" spacing="10.0" VBox.vgrow="ALWAYS">
                                        <children>
                                           <Button fx:id="backButton" mnemonicParsing="false" onAction="#back" prefHeight="60.0" prefWidth="161.0" text="Indietro">
                                              <font>
@@ -141,7 +144,6 @@
                                                 <FontAwesomeIcon fill="WHITE" iconName="REPLY" size="3em" />
                                              </graphic>
                                           </Button>
-                                          <Separator orientation="VERTICAL" prefHeight="200.0" prefWidth="10.0" />
                                           <Button fx:id="confirmButton" mnemonicParsing="false" onAction="#confirmRegistration" prefHeight="40.0" prefWidth="200.0" text="Conferma">
                                              <font>
                                                 <Font size="16.0" />
@@ -151,8 +153,14 @@
                                              </graphic>
                                           </Button>
                                        </children>
+                                       <VBox.margin>
+                                          <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                       </VBox.margin>
                                     </HBox>
                                  </children>
+                                 <HBox.margin>
+                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                 </HBox.margin>
                               </VBox>
                            </children>
                         </HBox>

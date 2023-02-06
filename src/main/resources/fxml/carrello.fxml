@@ -7,33 +7,42 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane prefHeight="800.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.CarrelloController">
+<BorderPane prefHeight="800.0" prefWidth="800.0" style="-fx-background-color: #1B262C;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.CarrelloController">
    <right>
-      <VBox prefHeight="451.0" prefWidth="291.0" spacing="10.0" BorderPane.alignment="CENTER">
+      <VBox prefHeight="501.0" prefWidth="291.0" spacing="10.0" BorderPane.alignment="CENTER">
          <BorderPane.margin>
             <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
          </BorderPane.margin>
          <children>
-            <Label alignment="CENTER" prefHeight="33.0" prefWidth="292.0" text="Riepilogo ordine">
+            <Label alignment="CENTER" prefHeight="33.0" prefWidth="292.0" text="Riepilogo ordine" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font></Label>
-            <HBox alignment="CENTER" prefHeight="27.0" prefWidth="291.0" spacing="40.0" VBox.vgrow="ALWAYS">
+            <HBox alignment="CENTER" prefHeight="27.0" prefWidth="291.0" spacing="20.0" VBox.vgrow="ALWAYS">
                <children>
-                  <Label text="Nome" HBox.hgrow="ALWAYS" />
-                  <Label text="Produttore" HBox.hgrow="ALWAYS" />
-                  <Label text="Prezzo" HBox.hgrow="ALWAYS" />
+                  <Label text="Nome" textFill="WHITE" HBox.hgrow="ALWAYS">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font></Label>
+                  <Label text="Produttore" textFill="WHITE" HBox.hgrow="ALWAYS">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font></Label>
+                  <Label text="Prezzo" textFill="WHITE" HBox.hgrow="ALWAYS">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font></Label>
                </children>
             </HBox>
             <Separator opacity="0.25" prefWidth="200.0" VBox.vgrow="ALWAYS" />
-            <ScrollPane prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+            <ScrollPane prefHeight="254.0" prefWidth="291.0" VBox.vgrow="ALWAYS">
                <content>
                   <VBox fx:id="vboxRiepilogoOrdineItem" />
                </content>
             </ScrollPane>
-            <HBox alignment="CENTER_RIGHT" prefHeight="35.0" prefWidth="291.0" VBox.vgrow="ALWAYS">
+            <HBox alignment="CENTER_RIGHT" prefHeight="5.0" prefWidth="291.0" VBox.vgrow="ALWAYS">
                <children>
-                  <Label prefHeight="15.0" prefWidth="166.0" text="Totale ">
+                  <Label prefHeight="15.0" text="Totale " textFill="WHITE">
                      <HBox.margin>
                         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                      </HBox.margin>
@@ -41,7 +50,7 @@
                         <Font name="System Bold" size="18.0" />
                      </font>
                   </Label>
-                  <Label fx:id="prezzoTotLabel" prefHeight="15.0" prefWidth="123.0" text="Label" HBox.hgrow="ALWAYS">
+                  <Label fx:id="prezzoTotLabel" prefHeight="15.0" text="Label" textFill="WHITE" HBox.hgrow="ALWAYS">
                      <HBox.margin>
                         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
                      </HBox.margin>
@@ -50,59 +59,46 @@
                      </font>
                   </Label>
                </children>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
             </HBox>
-            <TitledPane animated="false" expanded="false" text="Codice sconto" VBox.vgrow="ALWAYS">
-              <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                     <children>
-                        <VBox layoutX="8.0" layoutY="14.0" AnchorPane.bottomAnchor="-0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                           <children>
-                              <Label prefHeight="30.0" prefWidth="190.0" text="Codice Sconto" VBox.vgrow="ALWAYS">
-                                 <VBox.margin>
-                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                                 </VBox.margin>
-                              </Label>
-                              <TextField fx:id="codiceSconto" promptText="Inserisci il tuo codice sconto" VBox.vgrow="ALWAYS">
-                                 <VBox.margin>
-                                    <Insets bottom="10.0" left="10.0" right="10.0" />
-                                 </VBox.margin>
-                              </TextField>
-                           </children>
-                        </VBox>
-                     </children>
-                  </AnchorPane>
-              </content>
-            </TitledPane>
          </children>
       </VBox>
    </right>
    <top>
-      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <HBox alignment="CENTER" prefHeight="66.0" prefWidth="780.0" BorderPane.alignment="CENTER">
          <children>
-            <VBox prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
+            <VBox prefHeight="158.0" prefWidth="780.0" HBox.hgrow="ALWAYS">
                <children>
-                  <Label alignment="CENTER" prefHeight="100.0" prefWidth="765.0" text="Controlla l'ordine e completa l'acquisto">
-                     <font>
-                        <Font name="System Bold" size="32.0" />
-                     </font>
-                  </Label>
-                  <HBox prefHeight="100.0" prefWidth="200.0">
+                  <HBox alignment="CENTER" prefHeight="54.0" prefWidth="780.0" VBox.vgrow="ALWAYS">
                      <children>
-                        <Label prefHeight="35.0" prefWidth="240.0" text="Il tuo carrello" HBox.hgrow="ALWAYS">
+                        <Label prefHeight="24.0" prefWidth="259.0" text="Il tuo carrello" textFill="WHITE" HBox.hgrow="ALWAYS">
                            <font>
                               <Font size="30.0" />
                            </font>
                            <HBox.margin>
-                              <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                            </HBox.margin>
+                           <graphic>
+                              <FontAwesomeIcon fill="#d9a60f" iconName="SHOPPING_CART" size="2em" />
+                           </graphic>
                         </Label>
                      </children>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
                   </HBox>
-                  <HBox prefHeight="100.0" prefWidth="200.0">
+                  <Label alignment="CENTER" prefHeight="18.0" prefWidth="765.0" text="Controlla l'ordine e completa l'acquisto" textFill="WHITE" VBox.vgrow="ALWAYS">
+                     <font>
+                        <Font name="System Bold" size="32.0" />
+                     </font>
+                  </Label>
+                  <HBox alignment="CENTER" prefHeight="0.0" prefWidth="780.0" VBox.vgrow="ALWAYS">
                      <children>
-                        <Label prefHeight="15.0" prefWidth="204.0" text="Dettagli prodotto" HBox.hgrow="ALWAYS">
+                        <Label prefHeight="10.0" prefWidth="729.0" text="Dettagli prodotto" textFill="#f5f5f5" HBox.hgrow="ALWAYS">
                            <HBox.margin>
-                              <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                            </HBox.margin>
                            <font>
                               <Font size="20.0" />
@@ -119,30 +115,33 @@
       </HBox>
    </top>
    <bottom>
-      <HBox alignment="TOP_RIGHT" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER_RIGHT">
+      <HBox alignment="TOP_RIGHT" prefHeight="43.0" prefWidth="760.0" BorderPane.alignment="CENTER_RIGHT">
          <children>
             <HBox prefHeight="100.0" prefWidth="200.0" HBox.hgrow="ALWAYS">
                <children>
                   <VBox prefHeight="100.0" prefWidth="198.0" HBox.hgrow="ALWAYS">
                      <children>
-                        <Label prefHeight="29.0" prefWidth="351.0" text="Metodo di pagamento accettati" VBox.vgrow="ALWAYS">
+                        <Label prefHeight="29.0" prefWidth="351.0" text="MetodI di pagamento accettati" textFill="WHITE" VBox.vgrow="ALWAYS">
                            <VBox.margin>
                               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                           </VBox.margin></Label>
+                           </VBox.margin>
+                           <font>
+                              <Font size="16.0" />
+                           </font></Label>
                         <HBox prefHeight="45.0" prefWidth="237.0" spacing="20.0" VBox.vgrow="ALWAYS">
                            <children>
-                              <FontAwesomeIcon iconName="CREDIT_CARD" size="2em" />
-                              <FontAwesomeIcon iconName="PAYPAL" size="2em" text="" />
+                              <FontAwesomeIcon fill="WHITE" iconName="CREDIT_CARD" size="2em" />
                            </children>
                            <VBox.margin>
                               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                            </VBox.margin>
                         </HBox>
+                        <Separator prefHeight="13.0" prefWidth="441.0" VBox.vgrow="ALWAYS" />
                      </children>
                   </VBox>
                </children>
             </HBox>
-            <HBox alignment="TOP_RIGHT" prefHeight="60.0" prefWidth="192.0" HBox.hgrow="ALWAYS">
+            <HBox alignment="TOP_RIGHT" prefHeight="41.0" prefWidth="28.0" HBox.hgrow="ALWAYS">
                <children>
                   <Button contentDisplay="RIGHT" mnemonicParsing="false" onAction="#procediAcquisto" prefHeight="57.0" prefWidth="286.0" text="Procedi" HBox.hgrow="ALWAYS">
                      <graphic>
@@ -160,10 +159,13 @@
       </HBox>
    </bottom>
    <center>
-      <ScrollPane BorderPane.alignment="CENTER">
+      <ScrollPane fx:id="scrollPane" BorderPane.alignment="CENTER">
          <content>
             <VBox fx:id="vboxCarrello" alignment="CENTER" spacing="10.0" />
          </content>
+         <BorderPane.margin>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </BorderPane.margin>
       </ScrollPane>
    </center>
 </BorderPane>

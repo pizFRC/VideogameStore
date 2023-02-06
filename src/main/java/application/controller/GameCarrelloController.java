@@ -4,12 +4,14 @@ package application.controller;
 
 import java.text.DecimalFormat;
 
+import application.SceneHandler;
 import application.client.Client;
 import application.model.Game;
-import application.model.imageReader;
+import application.util.imageReader;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.ImageView;
 
 public class GameCarrelloController {
@@ -55,8 +57,7 @@ Client.getInstance().removeGamesCarrello(tmp);
        try {
 			imgGame.setImage(reader.byteToImg(g.getImg()));
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			SceneHandler.getInstance().showMessage("Errore :i prodotti nel carrello non sono disponibili","Errore", AlertType.ERROR);
 		}
     }
 

@@ -1,14 +1,11 @@
 package application.controller;
 
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Comparator;
 
 import application.client.Client;
 import application.model.Game;
-import javafx.animation.AnimationTimer;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -16,7 +13,6 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
 
 public class HomePageController{
@@ -25,7 +21,7 @@ public class HomePageController{
     private HBox rowTopGame;
 
     @FXML
-    private TilePane piùVendutiPane;
+    private HBox rowTopVenduti;
 
     @FXML
     private ImageView bannerImg;
@@ -34,8 +30,25 @@ public class HomePageController{
     @FXML
     private VBox vboxPrincipale;
 
+    
+    private void loadFxml(int numGame,ArrayList<Game>tmp,boolean rowTop) throws Exception {
+    	
+    	
+    	for(int i=0;i<numGame;i++){
+    	
+    			FXMLLoader loader=new FXMLLoader(getClass().getResource("/fxml/GameItemClient.fxml"));
+
+    			Parent root = (Parent)loader.load();
+    			GameItemController controller=loader.getController();
+    			controller.setData(tmp.get(i));
+    			
+    		if(rowTop)
+            rowTopGame.getChildren().add(root);
+    		else
+    			rowTopVenduti.getChildren().add(root);
+    	}
+    }
 public void setImage() {
-	//Client.getInstance().getGameHomeVenduti();
 	ArrayList<Game>tmp=Client.getInstance().getGameCerca();
 	if(tmp.isEmpty() ) {
 		Label lb=new Label("nessun gioco presente");
@@ -44,6 +57,7 @@ public void setImage() {
 		 
 	
 	}
+	//se sono più di 8 giochi
 	if(tmp.size()>8) {
 	rowTopGame.getChildren().clear();
 	tmp.sort(new Comparator<Game>() {
@@ -56,52 +70,36 @@ public void setImage() {
 		}
 		
 	});
-	
-	
-	for(int i=0;i<8;i++){
-		try {
-			FXMLLoader loader=new FXMLLoader(getClass().getResource("/fxml/GameItemClient.fxml"));
-
-			Parent root = (Parent)loader.load();
-			GameItemController controller=loader.getController();
-			controller.setData(tmp.get(i));
-			
-		
-        rowTopGame.getChildren().add(root);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+      try {
+		loadFxml(8,tmp,true);
+	} catch (Exception e1) {
+		rowTopGame.getChildren().clear();
 	}
+
 
 	tmp.sort(new Comparator<Game>() {
 
 		@Override
 		public int compare(Game o1, Game o2) {
 			
-			return o1.getNome().compareToIgnoreCase(o2.getNome());
+			return String.valueOf(o1.getDownload()).compareToIgnoreCase(String.valueOf(o2.getDownload()));
 			
 		}
 		
 	});
-	for(int i=0;i<6;i++){
-
-		try {
-			FXMLLoader loader=new FXMLLoader(getClass().getResource("/fxml/GameItemClient.fxml"));
-
-			Parent root = (Parent)loader.load();
-			GameItemController controller=loader.getController();
-			controller.setData(tmp.get(i));
-			
-			piùVendutiPane.getChildren().add(root);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+	rowTopVenduti.getChildren().clear();
+	 try {
+		loadFxml(8, tmp,false);
+	} catch (Exception e) {
+		rowTopVenduti.getChildren().clear();
 	}
 	
 	}
+	
+	//fine if
 	else{
+		
+		//sono meno di 8
 		rowTopGame.getChildren().clear();
 		tmp.sort(new Comparator<Game>() {
 
@@ -115,20 +113,11 @@ public void setImage() {
 		});
 		
 		
-		for(Game g:tmp){
-			try {
-				FXMLLoader loader=new FXMLLoader(getClass().getResource("/fxml/GameItemClient.fxml"));
+		try {
+			loadFxml(tmp.size(),tmp,true);
+		} catch (Exception e1) {
+			rowTopGame.getChildren().clear();
 
-				Parent root = (Parent)loader.load();
-				GameItemController controller=loader.getController();
-				controller.setData(g);
-				
-			
-	        rowTopGame.getChildren().add(root);
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
 		}
 
 		tmp.sort(new Comparator<Game>() {
@@ -136,26 +125,21 @@ public void setImage() {
 			@Override
 			public int compare(Game o1, Game o2) {
 				
-				return o1.getNome().compareToIgnoreCase(o2.getNome());
+				return String.valueOf(o1.getDownload()).compareToIgnoreCase(String.valueOf(o2.getDownload()))*-1;
 				
 			}
 			
 		});
-		for(Game g:tmp){
-
-			try {
-				FXMLLoader loader=new FXMLLoader(getClass().getResource("/fxml/GameItemClient.fxml"));
-
-				Parent root = (Parent)loader.load();
-				GameItemController controller=loader.getController();
-				controller.setData(g);
-				
-				piùVendutiPane.getChildren().add(root);
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+		
+		
+		rowTopVenduti.getChildren().clear();
+		try {
+			loadFxml(tmp.size(),tmp,false);
+		} catch (Exception e1) {
+			rowTopVenduti.getChildren().clear();
 		}
+		
+		
 	}
 	
 	
@@ -163,18 +147,11 @@ public void setImage() {
 	
     }
 	
-
-
-	public  void initialize() {
-		System.out.println("inizitalize");
-		piùVendutiPane.setPrefRows(1);
-		
-		
-		Image img=new Image(getClass().getResourceAsStream("/img/logo.png"),200,50,true,true);
-    	bannerImg.setImage(img);
-    	piùVendutiPane.prefWidthProperty().bind(vboxPrincipale.widthProperty());
-    	System.out.println(piùVendutiPane.getParent().getParent());
-   setImage();
+@FXML
+ void initialize() {
+       Image img=new Image(getClass().getResourceAsStream("/img/log.gif"));
+    	bannerImg.setImage(img);	
+        setImage();
 	}
 
 	

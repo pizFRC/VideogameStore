@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import de.jensd.fx.glyphs.fontawesome.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.LibreriaAcquistiController">
+<BorderPane style="-fx-background-color: #1B262C;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.LibreriaAcquistiController">
    <center>
       <TableView fx:id="table" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
         <columns>
@@ -26,12 +27,16 @@
    <top>
       <VBox prefHeight="68.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
-            <HBox prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
                <children>
-                  <Label prefHeight="60.0" prefWidth="319.0" text="I tuoi acquisti" HBox.hgrow="ALWAYS">
+                  <FontAwesomeIcon fill="WHITE" iconName="DOWNLOAD" size="4em" />
+                  <Label prefHeight="60.0" prefWidth="319.0" text="I tuoi acquisti" textFill="WHITE" HBox.hgrow="ALWAYS">
                      <font>
                         <Font name="System Bold" size="40.0" />
                      </font>
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
                   </Label>
                </children>
             </HBox>
@@ -42,7 +47,7 @@
       </VBox>
    </top>
    <bottom>
-      <VBox fx:id="progressVbox" alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-border-color: red;" BorderPane.alignment="CENTER">
+      <VBox fx:id="progressVbox" alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
          <BorderPane.margin>
             <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
          </BorderPane.margin>

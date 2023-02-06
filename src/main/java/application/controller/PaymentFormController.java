@@ -4,7 +4,6 @@ import javafx.fxml.FXML;
 import application.SceneHandler;
 import application.client.Client;
 import javafx.event.ActionEvent;
-import javafx.scene.Scene;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
@@ -21,7 +20,7 @@ public class PaymentFormController {
 
     @FXML
     void confermaAcquisto(ActionEvent event) {
-    	SceneHandler.getInstance().showError("acquisto confermato", AlertType.INFORMATION);
+    	SceneHandler.getInstance().showMessage("acquisto confermato","Acquisto confermato", AlertType.INFORMATION);
 
 
 

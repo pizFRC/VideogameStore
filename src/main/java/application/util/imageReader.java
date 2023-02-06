@@ -1,4 +1,4 @@
-package application.model;
+package application.util;
 
 
 import java.io.*;
@@ -19,14 +19,14 @@ public class imageReader {
 		File image=new File(path);
 		   FileInputStream input=new FileInputStream(image);
 		   byte[] array =    input.readAllBytes();
-	        // convert BufferedImage to byte[]
+		   input.close();
 	       return array;
 	}
 	public Image byteToImg(byte[]array) throws Exception{
 		InputStream in = new ByteArrayInputStream(array);
 		Image img = new Image(in);
 		
-	       
+	       in.close();
 		return img;
 		
 	}

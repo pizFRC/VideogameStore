@@ -1,50 +1,68 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.text.*?>
 <?import de.jensd.fx.glyphs.fontawesome.*?>
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.ErrorPageController">
+<BorderPane style="-fx-background-color: #1B262C;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.ErrorPageController">
    <center>
-      <HBox alignment="CENTER" prefHeight="261.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+      <HBox alignment="CENTER" prefHeight="700.0" BorderPane.alignment="CENTER">
          <children>
-            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
+            <VBox alignment="CENTER" HBox.hgrow="ALWAYS">
                <children>
-                  <HBox alignment="CENTER">
+                  <HBox alignment="CENTER" VBox.vgrow="ALWAYS">
                      <children>
-                        <FontAwesomeIcon iconName="GEARS" size="4em" wrappingWidth="72.57142639160156" />
-                        <Label alignment="CENTER" prefHeight="49.0" prefWidth="366.0" text="Errore di connessione">
+                        <FontAwesomeIcon fill="WHITE" iconName="GEARS" size="5em" wrappingWidth="72.57142639160156" />
+                        <Label text="Errore di connessione" textFill="WHITE" HBox.hgrow="ALWAYS">
                            <font>
-                              <Font size="20.0" />
+                              <Font name="System Bold" size="48.0" />
                            </font>
                         </Label>
                      </children>
                   </HBox>
-                  <Label alignment="CENTER" prefHeight="38.0" prefWidth="491.0" text="La connessione potrebbe essere assente">
-                     <font>
-                        <Font size="20.0" />
-                     </font>
-                  </Label>
-                  <Label alignment="CENTER" prefHeight="38.0" prefWidth="491.0" text="Riprova più tardi" VBox.vgrow="ALWAYS">
-                     <font>
-                        <Font size="20.0" />
-                     </font>
-                  </Label>
-                  <HBox alignment="CENTER" prefHeight="136.0" prefWidth="600.0">
+                  <VBox alignment="CENTER" VBox.vgrow="ALWAYS">
                      <children>
-                        <Button fx:id="exitButton" mnemonicParsing="false" onAction="#exit" prefHeight="94.0" prefWidth="133.0">
+                        <Label alignment="CENTER" text="Siamo spiacenti per l'imprevisto," textFill="WHITE" VBox.vgrow="ALWAYS">
+                           <font>
+                              <Font name="System Bold" size="36.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" prefWidth="922.0" text="la connessione potrebbe essere assente" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="36.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="72.0" text="Riprova più tardi." textFill="WHITE" VBox.vgrow="ALWAYS">
+                           <font>
+                              <Font name="System Bold" size="36.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </VBox>
+                  <HBox alignment="CENTER" VBox.vgrow="ALWAYS">
+                     <children>
+                        <Button fx:id="exitButton" contentDisplay="TOP" mnemonicParsing="false" onAction="#exit" prefHeight="125.0" prefWidth="150.0" text="Esci" textFill="WHITE" HBox.hgrow="ALWAYS">
                            <graphic>
-                              <FontAwesomeIcon iconName="SIGN_OUT" size="4em" />
+                              <FontAwesomeIcon fill="WHITE" iconName="SIGN_OUT" size="4em" />
                            </graphic>
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
                         </Button>
                      </children>
+                     <VBox.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </VBox.margin>
                   </HBox>
                </children>
             </VBox>
          </children>
+         <BorderPane.margin>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </BorderPane.margin>
       </HBox>
    </center>
 </BorderPane>

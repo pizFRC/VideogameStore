@@ -1,6 +1,5 @@
 package application;
 
-import application.client.Client;
 import javafx.application.Application;
 
 import javafx.stage.Stage;

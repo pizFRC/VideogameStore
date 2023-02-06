@@ -4,7 +4,6 @@ package application.controller;
 import java.io.IOException;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
-import java.util.List;
 
 import application.SceneHandler;
 import application.client.Client;
@@ -15,13 +14,10 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
-import javafx.scene.layout.AnchorPane;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
@@ -38,22 +34,20 @@ public class CarrelloController extends AnimationTimer{
 	    @FXML
 	    private VBox vboxCarrello;
 
-	    @FXML
-	    private TextField codiceSconto;
 
+	    @FXML
+	    private ScrollPane scrollPane;
 	    @FXML
 	    void procediAcquisto(ActionEvent event) {
           try {
 			SceneHandler.getInstance().showPaymentForm();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			SceneHandler.getInstance().showMessage("Errore non è possibile procedere con il pagamento riprova più tardi","Errore", AlertType.ERROR);
 		}
 	    }
 
-
-	@FXML
-	private void initialize() {
+	    @FXML
+		void initialize() {
 		aggiuntiCarrello=Client.getInstance().getGameCarrello();
 		if(Client.getInstance().getSizeProdottiCarrello()>0)
 		setGame();
@@ -63,7 +57,7 @@ public class CarrelloController extends AnimationTimer{
 	
 	private void setGame() {
 		
-      
+		vboxCarrello.prefWidthProperty().bind(	scrollPane.widthProperty());
 		   aggiuntiCarrello=Client.getInstance().getGameCarrello();
 		  	 DecimalFormat decimalFormat = new DecimalFormat("#.00");
     	   
@@ -74,11 +68,14 @@ public class CarrelloController extends AnimationTimer{
 		{
 			try {
 
-				FXMLLoader loader=new FXMLLoader(getClass().getResource("/fxml/GameItem.fxml"));
+				FXMLLoader loader=new FXMLLoader(getClass().getResource("/fxml/GameItemCarrello.fxml"));
 				Parent root=(Parent)loader.load();
+				
+				HBox b=(HBox)root;
 				GameCarrelloController  controller=loader.getController();
 				controller.setData(g);
-				vboxCarrello.getChildren().add(root);
+	     b.prefWidthProperty().bind(vboxCarrello.widthProperty());
+				vboxCarrello.getChildren().add(b);
 				HBox item=new HBox();
 				
 				Label nome=new Label(g.getNome());
@@ -86,6 +83,7 @@ public class CarrelloController extends AnimationTimer{
 				Label produttore=new Label(g.getProduttore());
 				HBox.setMargin(produttore,new Insets(10,10,10,10));
 				Label prezzo=new Label(decimalFormat.format(g.getPrezzo()));
+				prezzo.setAlignment(Pos.CENTER_RIGHT);
 				HBox.setMargin(prezzo,new Insets(10,10,10,10));
 				item.getChildren().addAll(nome,produttore,prezzo);
 				item.setAlignment(Pos.CENTER_LEFT);
@@ -93,8 +91,11 @@ public class CarrelloController extends AnimationTimer{
 				tot+=g.getPrezzo();
 				
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+			try {
+				SceneHandler.getInstance().showErrorPage();
+			} catch (Exception e1) {
+				System.err.println("errore durante il caricamento di errorpage");
+			}
 			}
 			
 		}

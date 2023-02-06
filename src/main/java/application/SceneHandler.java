@@ -3,38 +3,30 @@ package application;
 
 
 
-import java.io.IOException;
 
 import application.client.Client;
-import application.client.Messages;
 import application.controller.CarrelloController;
-import application.controller.CercaGameController;
 import application.controller.ChatController;
-import application.controller.HomeController;
-import application.controller.HomePageController;
+import application.controller.PannelloPrincipale;
 import application.controller.PaymentFormController;
-import application.model.AccountLogin;
-import application.model.imageReader;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 
 public class SceneHandler {
 
 private  Scene main;
 private  Stage stage;
 private static SceneHandler instance=null;
-private boolean isInChat=false;
+
 
 private SceneHandler() {
 	
@@ -54,10 +46,9 @@ public  void init(Stage stage) throws Exception {
 	  this.stage=stage;
 	   
      
-	  //stage.initStyle(StageStyle.UNDECORATED);
 	setLogin();
 	 
-    stage.setTitle("Game Store Management - Login");
+    stage.setTitle("Neon Store");
    
    setCSS();
     stage.show();
@@ -75,9 +66,8 @@ public  void setRegistrazione() throws Exception {
 	FXMLLoader loader=new FXMLLoader(getClass().getResource("/fxml/Registrazione.fxml"));
 	Parent root = (Parent)loader.load();  
     main=new Scene(root);
-  
-    setCSS();
-   // stage.initModality(Modality.APPLICATION_MODAL);
+    
+  setCSS();
     stage.setScene(main);
    
 	
@@ -87,13 +77,12 @@ public  void setRegistrazione() throws Exception {
 	
 }
 public  void setHome() throws Exception {
-	FXMLLoader loader=new FXMLLoader(getClass().getResource("/fxml/Home.fxml"));
+	FXMLLoader loader=new FXMLLoader(getClass().getResource("/fxml/PannelloPrincipale.fxml"));
 	BorderPane root = (BorderPane)loader.load();  
 	
     main=new Scene(root);
     
-    HomeController controller=loader.getController();
-	controller.setStage(stage);
+    PannelloPrincipale controller=loader.getController();
 	Thread t = new Thread(Client.getInstance());
 	t.setDaemon(true);
 	t.start();
@@ -120,10 +109,13 @@ public  void setHome() throws Exception {
 	
 }
 public void setHomePage()throws Exception{
-	System.out.println(main.getRoot());
+	
 	BorderPane p=(BorderPane) main.getRoot();
 	FXMLLoader loader=new FXMLLoader(getClass().getResource("/fxml/homepage.fxml"));
 	Parent home = (Parent)loader.load(); 
+
+	
+	
 	p.setCenter(home);
 	
 		
@@ -169,15 +161,15 @@ public void showLibreriaAcquisti() throws Exception {
 	p.setCenter(home);
 }
 
-public void showError(String message,AlertType tipo) {
+public void showMessage(String message,String title,AlertType tipo) {
 	Alert a=new Alert(tipo);
-	a.setTitle("Errore");
+	a.setTitle(title);
 	a.setContentText(message);
 	a.setHeaderText("");
 	a.show();
 }
 public void setProfilo() throws Exception {
-	System.out.println(main.getRoot());
+
 	BorderPane p=(BorderPane) main.getRoot();
 	FXMLLoader loader=new FXMLLoader(getClass().getResource("/fxml/profiloClient.fxml"));
 	Parent home = (Parent)loader.load(); 
@@ -185,16 +177,7 @@ public void setProfilo() throws Exception {
 
 	
 }
-public void setImgNameProfilo(String username, byte[] img) {
-	System.out.println(main.getRoot());
-	BorderPane p=(BorderPane) main.getRoot();
-	FXMLLoader loader=new FXMLLoader(getClass().getResource("/fxml/Home.fxml"));
-	
 
-    
-     
-	
-}
 public void showCercaGames() throws Exception {
 	System.out.println(main.getRoot());
 	BorderPane p=(BorderPane) main.getRoot();
@@ -202,10 +185,9 @@ public void showCercaGames() throws Exception {
 	FXMLLoader loader=new FXMLLoader(getClass().getResource("/fxml/cercaGame.fxml"));
 	
 	Parent home = (Parent)loader.load(); 
-	//CercaGameController controller=loader.getController();
-	//controller.start();
+	
 	p.setCenter(home);
-	 System.out.println("nuovi nessaggi?");
+	
 	
 }
 public void showChat() throws Exception {
@@ -247,6 +229,7 @@ public void showCarrello() throws Exception {
 public void showPaymentForm() throws Exception {
 	FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/paymentForm.fxml"));
 Parent root = (Parent) loader.load();
+root.getStylesheets().add(getClass().getResource("/css/style.css").toExternalForm());
 Stage tmpStage = new Stage();
 PaymentFormController controller=loader.getController();
 controller.setStage(tmpStage);

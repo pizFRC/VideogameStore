@@ -4,25 +4,15 @@ package application.controller;
 import java.io.File;
 import java.sql.Date;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 
 import application.SceneHandler;
 import application.client.Client;
 import application.client.Protocol;
-import application.model.DataValidator;
-import application.model.imageReader;
-import javafx.beans.InvalidationListener;
-import javafx.beans.binding.Bindings;
-import javafx.beans.property.StringProperty;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
+import application.util.DataValidator;
+import application.util.imageReader;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
@@ -30,8 +20,7 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.input.InputMethodEvent;
-import javafx.scene.input.KeyEvent;
+import javafx.scene.control.Tooltip;
 import javafx.scene.layout.HBox;
 import javafx.stage.FileChooser;
 
@@ -77,20 +66,20 @@ public class RegistrationController {
  
     @FXML
     private Button imgButton;
-
+ private byte[]  imgDefault;
+ 
+ private String styleField=(" -fx-background-color: #a9a9a9 , white , white;"
+   		+ "    -fx-background-insets: 0 -1 -1 -1, 0 0 0 0, 0 -1 3 -1;");
     
-    private byte[]  imgDefault;
-    @FXML
-	void chooseImg(ActionEvent event) {
+ 
+ @FXML
+ void chooseImg(ActionEvent event) {
     	FileChooser fileChooser = new FileChooser();
     
     	
    
         fileChooser.getExtensionFilters().addAll(
-        		new FileChooser.ExtensionFilter("IMAGE files (*.png)", "*.png"),
-        		new FileChooser.ExtensionFilter("IMAGE files (*.jpg)", "*.jpg")
-        		);
-        
+        		new FileChooser.ExtensionFilter("IMAGE files  (*.png,*.jpeg,*.jpg)", "*.png","*.jpeg","*.jpg"));
         
         
         
@@ -105,135 +94,141 @@ public class RegistrationController {
 		  try {
 			imgDefault=imgReader.read(file.getPath());
 ImageView img= new ImageView(imgReader.byteToImg(imgDefault));
+img.setFitWidth(150);
+img.setFitHeight(150);
         	
-        	img.setScaleY(2);
-        		img.setScaleX(2);
         			imgButton.setGraphic(img);
-			
+        			
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			SceneHandler.getInstance().showMessage("errore durante la selezione dell'immagine verrà  \nimpostata quella di default","Errore", AlertType.ERROR);
 		}
 	    }
-    public void initialize() {
-       
+   
+
+ 
+ @FXML
+	void initialize(){
+    	Tooltip a=new Tooltip("I dati non saranno condivisi con aziende di terze parti");
+       privacyCheckBox.setTooltip(a);
             	imageReader imgReader=new imageReader();
             	
-          
+            	areaCodeField.setText("39");
+            	areaCodeField.setEditable(false);
             
             	try {
-        			imgDefault = imgReader.read(getClass().getResource("/img/man2.png").getPath());
+        			imgDefault = imgReader.read(getClass().getResource("/img/user_profile.png").getPath());
         			ImageView img= new ImageView(imgReader.byteToImg(imgDefault));
         	
         	img.setScaleY(2);
         		img.setScaleX(2);
         			imgButton.setGraphic(img);
         		} catch (Exception e) {
-        			// TODO Auto-generated catch block
-        			e.printStackTrace();
+        			SceneHandler.getInstance().showMessage("Errore durante il carimento della finestra di registrazione","Errore",AlertType.ERROR);
         		}
             	
             
-    	System.out.println("initr");
     	
     	
     	 
     	confirmButton.setDisable(true);
     	
-    	usernameField.setOnKeyReleased(new EventHandler<KeyEvent>() {
+    	usernameField.textProperty().addListener((observable, oldValue, newValue) -> {
+	          
+	           boolean pw=DataValidator.parseUsername(newValue);
+	           if(newValue.isEmpty()) {
+	        	   usernameField.setStyle(styleField);
+	        	
+    	}else if(pw) {
+	        	 
+	        	   usernameField.setStyle(styleField);
+	        	   
+	           }else//NON corretta
+	           {   usernameField.setStyle("-fx-background-color: red;");
+	        	   
+	           }
+	           unloackButton();
+	        });
 
-			@Override
-			public void handle(KeyEvent event) {
-				  boolean username=DataValidator.parseUsername(usernameField.getText());
-				if(!username && !usernameField.getText().isEmpty()) {
-					usernameField.setStyle("-fx-background-color:  #c00000;");
-					if(!confirmButton.isDisable())
-						confirmButton.setDisable(true);
-				}else
-					usernameField.setStyle("-fx-background-color: white;");
-				
-			}
-    		
-    	});
-    	
-    	emailField.setOnKeyReleased(new EventHandler<KeyEvent>() {
-
-			@Override
-			public void handle(KeyEvent event) {
-				  boolean email=DataValidator.parseEmail(emailField.getText());
-				if(!email && !emailField.getText().isEmpty()) {
-					emailField.setStyle("-fx-background-color:  #c00000;");
-					if(!confirmButton.isDisable())
-						confirmButton.setDisable(true);
-				}else
-					emailField.setStyle("-fx-background-color: white;");
-				
-			}
-    		
-    	});
-    	numberField.setOnKeyReleased(new EventHandler<KeyEvent>() {
-
-			@Override
-			public void handle(KeyEvent event) {
-				if(!controllaCriteri() && !passwordField.getText().isEmpty()) {
-					passwordField.setStyle("-fx-background-color:  #c00000;");
-					if(!confirmButton.isDisable())
-						confirmButton.setDisable(true);
-				}else
-					passwordField.setStyle("-fx-background-color: white;");
-				
-			}
-    		
-    	});
-    	passwordField.setOnKeyReleased(new EventHandler<KeyEvent>() {
-
-			@Override
-			public void handle(KeyEvent event) {
-				boolean pw=DataValidator.parsePassword( passwordField.getText());
-				if(!pw && !passwordField.getText().isEmpty()) {
-					passwordField.setStyle("-fx-background-color:  #c00000;");
-					if(!confirmButton.isDisable())
-						confirmButton.setDisable(true);
-				}else
-					passwordField.setStyle("-fx-background-color: white;");
-				  
-			}
-    		
-    	});
-    	confirmPWField.setOnKeyReleased(new EventHandler<KeyEvent>() {
-
-			@Override
-			public void handle(KeyEvent event) {
-				//boolean pw=DataValidator.parsePassword( confirmPWField.getText());
-				if(! (passwordField.getText().length()==confirmPWField.getText().length())){
-					confirmPWField.setStyle("-fx-background-color: #c00000;");
-					if(!confirmButton.isDisable())
-						confirmButton.setDisable(true);
-			
-				}else {
-					
-				
-							if(confirmPWField.getText().equals(passwordField.getText())) {
-							confirmPWField.setStyle("-fx-background-color: white;");
-							confirmButton.setDisable(false);
-							}
-						else {
-						confirmPWField.setStyle("-fx-background-color: #c00000;");
-						confirmButton.setDisable(true);
-									}
-				
-				}
-			
-			}
-    	});
     	
     	
+    	emailField.textProperty().addListener((observable, oldValue, newValue) -> {
+		          
+	           boolean pw=DataValidator.parseEmail(newValue);
+	           if(newValue.isEmpty()) {
+	        	   emailField.setStyle(styleField);
+ 	}else if(pw) {
+	        	   emailField.setStyle(styleField);
+	        	   
+	           }else//NON corretta
+	           {   emailField.setStyle("-fx-background-color: red;");
+	        	   
+	           }
+	           unloackButton();
+	        });
+    	
+    	
+    	numberField.textProperty().addListener((observable, oldValue, newValue) -> {
+		          
+	           boolean pw=DataValidator.parsePhone(newValue);
+	           if(newValue.isEmpty()) {
+	        	   numberField.setStyle(styleField);
+ 	}else if(pw) {
+	        	   numberField.setStyle(styleField);
+	        	   
+	           }else//NON corretta
+	           {   numberField.setStyle("-fx-background-color: red;");
+	        	   
+	           }
+	           unloackButton();
+	        });
+    	
+    	
+    	passwordField.textProperty().addListener((observable, oldValue, newValue) -> {
+		          
+	           boolean pw=DataValidator.parsePassword(newValue);
+	           if(newValue.isEmpty()) {
+	        	   passwordField.setStyle(styleField);
+	}else if(pw) {
+	        	   passwordField.setStyle(styleField);
+	        	   
+	           }else//NON corretta
+	           {   passwordField.setStyle("-fx-background-color: red;");
+	        	   
+	           }
+	           unloackButton();
+	        });
+    	
+    	
+    	
+    	
+    	confirmPWField.textProperty().addListener((observable, oldValue, newValue) -> {
+		          
+	           boolean pw=DataValidator.parsePassword(newValue);
+	           if(newValue.isEmpty()) {
+	        	   confirmPWField.setStyle(styleField);
+	}else if(pw) {
+		    if(newValue.equals(passwordField.getText())) {
+			    confirmPWField.setStyle(styleField);
+	          }   else {
+	        	   confirmPWField.setStyle("-fx-background-color: red;");
+	        	   }
+	        	   
+	           }else//NON corretta
+	           {   confirmPWField.setStyle("-fx-background-color: red;");
+	        	   
+	           }
+	           
+	           unloackButton();
+	        });
     
     	
     }
     @FXML
     void confirmRegistration(ActionEvent event) {
-    	
+    	if(!privacyCheckBox.isSelected()) {
+    		SceneHandler.getInstance().showMessage("Conferma le condizioni della privacy per proseguire","Errore", AlertType.WARNING);
+    		return;
+    	}
         registration( );
 clear();
     }
@@ -242,6 +237,7 @@ clear();
     	usernameField.setText("");
     	numberField.setText("");
     	privacyCheckBox.setSelected(false);
+    	datePicker.getEditor().clear();
     	emailField.setText("");
     	areaCodeField.setText("");
     	confirmPWField.setText("");
@@ -256,7 +252,7 @@ clear();
 	 String phone=data[2];
 	 String pw=data[3];
 	 Date date = Date.valueOf(LocalDate.now());
-	 byte[]img;
+	
  	String res=Client.getInstance().registration(username, email, phone,pw,date,imgDefault);
  	
  	if(res.equals(Protocol.OK)) {
@@ -265,13 +261,14 @@ clear();
  			
 			SceneHandler.getInstance().setHome();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			SceneHandler.getInstance().showMessage("Alcuni file potrebbero essere danneggiati o non essere presenti","Errore",  AlertType.ERROR);
+			
 		}
  		
  	}else {
  		
- 		SceneHandler.getInstance().showError("non registrato", AlertType.ERROR);
+ 		SceneHandler.getInstance().showMessage("La registrazione non è andata a buon fine","Errore", AlertType.ERROR);
+ 		clear();
  		Client.getInstance().reset();
  		
  	}
@@ -281,21 +278,25 @@ clear();
       try {
 		SceneHandler.getInstance().setLogin();
 	} catch (Exception e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
+		SceneHandler.getInstance().showMessage("Non è possibile tornare alla finestra di login","Errore",  AlertType.ERROR);
 	}
     }
     
 
-   
+   private void unloackButton() {
+	   if(controllaCriteri())
+		   confirmButton.setDisable(false);
+	   else
+		   confirmButton.setDisable(true);
+   }
 
   
     private boolean controllaCriteri() {
    
      boolean pw=DataValidator.parsePassword( passwordField.getText());
      boolean username=DataValidator.parseUsername(usernameField.getText());
-     boolean email=DataValidator.parseUsername(emailField.getText());
-     boolean number=DataValidator.parsePhone(areaCodeField.getText()+numberField.getText());
+     boolean email=DataValidator.parseEmail(emailField.getText());
+     boolean number=DataValidator.parsePhone(numberField.getText());
      boolean pwC=DataValidator.parsePassword( confirmPWField.getText());
     return  pw && username && email && number && pwC;
     
@@ -303,7 +304,7 @@ clear();
     }
     
     public String[] getData() {
-    	boolean correct=false;
+    	
     	String [] container = new String[4];
     	
     	container[0]=usernameField.getText();

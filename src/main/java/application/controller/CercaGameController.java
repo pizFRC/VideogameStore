@@ -4,12 +4,11 @@ package application.controller;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Comparator;
-import java.util.List;
 
+import application.SceneHandler;
 import application.client.Client;
 import application.model.CategorieGame;
 import application.model.Game;
-import javafx.animation.AnimationTimer;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -20,16 +19,13 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.TilePane;
 
 
 public class CercaGameController {
 
 	private boolean aggiorna=true;
-	private long previousTime = 0;
-	private long frequency = 1000 * 1000000;
-	
+
 	 private ArrayList<Game>game ;
 
     @FXML
@@ -58,24 +54,16 @@ public class CercaGameController {
 
     @FXML
     private Button categoriaSport;
-    @FXML
-    void cerca(ActionEvent event) {
-    	System.out.println("aggiorna cambia stato");
-    	
-       
-    	
-    }
+  
     
     @FXML
-    private void initialize() {
+     void initialize() {
     	
-    //	Client.getInstance().getAllGame();
-    	ordineChoicheBox.getItems().addAll("Alfabetico","Prezzo","Data");
+    	ordineChoicheBox.getItems().addAll("Alfabetico","Download","Preferenze","Prezzo","Data");
     	ordineChoicheBox.setValue("Alfabetico");
     	game=Client.getInstance().getGameCerca();
    
-    //	Client.getInstance().getAllGame();
-    	System.out.println("prova stampa init");
+    	
 
 		Image img=new Image(getClass().getResourceAsStream("/icons/sword.png"),72,72,true,true);
            categoriaAvventura.setGraphic(new ImageView(img));
@@ -88,8 +76,10 @@ public class CercaGameController {
        img=new Image(getClass().getResourceAsStream("/icons/redo.png"),72,72,true,true);
        resetButton.setGraphic(new ImageView(img));
         listaGame.prefWidthProperty().bind(scrollPane.widthProperty());
+        
+        
         titoloField.textProperty().addListener((observable, oldValue, newValue) -> {
-           System.out.println("testo sta cambiando");
+        
            aggiorna=!aggiorna;
            if(newValue.isEmpty())
         	   aggiorna=false;
@@ -98,6 +88,8 @@ public class CercaGameController {
     setGame(game);
         });
         
+        
+        
         ordineChoicheBox.valueProperty().addListener((observable, oldValue, newValue) -> {
             if(newValue.equals("Alfabetico")){
             	game.sort(new Comparator<Game>() {
@@ -105,6 +97,36 @@ public class CercaGameController {
             		@Override
             		public int compare(Game o1, Game o2) {
             			return o1.getNome().compareTo(o2.getNome());
+            			
+            		}
+            		
+            	});
+            }else if(newValue.equals("Download")) {
+            	game.sort(new Comparator<Game>() {
+                           
+            		@Override 
+            		public int compare(Game o1, Game o2) {
+            			if(o1.getDownload()<o2.getDownload())
+            			return 1;
+            			else if(o1.getDownload()>o2.getDownload())
+            				return -1;
+            			else return 0;
+            		
+            			
+            		}
+            		
+            	});
+            }else if(newValue.equals("Preferenze")) {
+            	game.sort(new Comparator<Game>() {
+
+            		@Override
+            		public int compare(Game o1, Game o2) {
+            			if(o1.getPreferenze()<o2.getPreferenze())
+            			return 1;
+            			else if(o1.getPreferenze()>o2.getPreferenze())
+            				return -1;
+            			else return 0;
+            		
             			
             		}
             		
@@ -139,7 +161,6 @@ public class CercaGameController {
             
   
             
-            System.out.println("riordinati");
             setGame(game);
           });
         
@@ -147,11 +168,10 @@ public class CercaGameController {
         
     	
     }
-   private synchronized void setGame(ArrayList<Game>game) {
+   private  void setGame(ArrayList<Game>game) {
 	   
 	   listaGame.getChildren().clear();
         listaGame.setPrefRows(game.size()/5);
-        System.out.println("i giochi sono"+game);
 	   for(Game g:game) {
 		 if(!titoloField.getText().isEmpty()){
 			
@@ -170,8 +190,11 @@ public class CercaGameController {
 			 
 			   listaGame.getChildren().add(root);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		 try {
+			SceneHandler.getInstance().showErrorPage();
+		} catch (Exception e1) {
+			System.err.println("errore durante il caricamento di error page");
+		}
 		}
 		   
 	   }
@@ -182,7 +205,7 @@ public class CercaGameController {
 	  
 	   ArrayList<Game>gameSport= new  ArrayList<Game>();
 	   for(Game g:game) {
-		   if(g.getGenere().contains(CategorieGame.SPORT))
+		   if(g.getGenere().toLowerCase().contains(CategorieGame.SPORT.toLowerCase()))
 		   gameSport.add(g);
 	   }
 	   setGame(gameSport);
@@ -190,12 +213,12 @@ public class CercaGameController {
    @FXML
    void sparatuttoPressed(ActionEvent event) {
 	  
-	   ArrayList<Game>gameSport= new  ArrayList<Game>();
+	   ArrayList<Game>gameSparatutto= new  ArrayList<Game>();
 	   for(Game g:game) {
-		   if(g.getGenere().contains(CategorieGame.SPARATUTTO))
-		   gameSport.add(g);
+		   if(g.getGenere().toLowerCase().contains(CategorieGame.SPARATUTTO.toLowerCase()))
+			   gameSparatutto.add(g);
 	   }
-	   setGame(gameSport);
+	   setGame(gameSparatutto);
    }
 
    @FXML
@@ -203,7 +226,7 @@ public class CercaGameController {
 	   
 	   ArrayList<Game>gameSport= new  ArrayList<Game>();
 	   for(Game g:game) {
-		   if(g.getGenere().contains(CategorieGame.STRATEGIA))
+		   if(g.getGenere().toLowerCase().contains(CategorieGame.STRATEGIA.toLowerCase()))
 		   gameSport.add(g);
 	   }
 	   setGame(gameSport);
@@ -212,36 +235,18 @@ public class CercaGameController {
    @FXML
    void avventuraPressed(ActionEvent event) {
 	  
-	   ArrayList<Game>gameSport= new  ArrayList<Game>();
+	   ArrayList<Game>gameAvv= new  ArrayList<Game>();
 	   for(Game g:game) {
-		   if(g.getGenere().contains(CategorieGame.AVVENTURA))
-		   gameSport.add(g);
+		   if(g.getGenere().toLowerCase().contains(CategorieGame.AVVENTURA.toLowerCase()))
+			   gameAvv.add(g);
 	   }
-	   setGame(gameSport);
+	   setGame(gameAvv);
    }
 
    @FXML
    void reset(ActionEvent event) {
+	   titoloField.clear();
           setGame(game);
    }
-/*
-@Override
-public void handle(long now) {
-	 if(now - previousTime >= frequency) {
-		   
-	/*	if(aggiorna) {
-			System.out.println("handle di cerca");
-			// 
-		     //   setGame(Client.getInstance().getGameCerca());
-		        aggiorna=!aggiorna;
-		 }
-		 previousTime = now;
-		   }
-		 
-		
-		
-		 
-	
-}
-*/
+
 }

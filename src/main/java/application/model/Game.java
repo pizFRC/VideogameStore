@@ -3,7 +3,6 @@ package application.model;
 import java.io.Serializable;
 import java.sql.Date;
 
-import javafx.scene.image.Image;
 
 public class Game implements Serializable{
 /**
@@ -93,7 +92,7 @@ public class Game implements Serializable{
 		this.prezzo = prezzo;
 	}
 	public String toString() {
-		return nome +' '+produttore;
+		return "Nome:" + nome +" ,Produttore: "+produttore;
 		
 	}
 	public void setPreferenze(int p) {
@@ -103,8 +102,12 @@ public class Game implements Serializable{
 	public void setDownload(int download) {
 		this.download=download;
 	}
+	public int getDownload() {
+	return download;
+	}
+
 	public void setEtàMin(int eta_min) {
-		this.eta_minima=eta_min;
+		this.setEta_minima(eta_min);
 		
 	}
 	public int getPreferenze() {
@@ -118,4 +121,10 @@ public void setUrlDownload(String url) {
 		this.urlDownload=url;
 		
 	}
+public int getEta_minima() {
+	return eta_minima;
+}
+public void setEta_minima(int eta_minima) {
+	this.eta_minima = eta_minima;
+}
 	}

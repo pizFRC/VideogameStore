@@ -1,4 +1,4 @@
-package application.model;
+package application.util;
 
 import java.util.regex.Pattern;
 
@@ -30,7 +30,7 @@ public class DataValidator {
 	}
 	public static boolean parsePhone(String numberPhone) {
 		boolean lenght=numberPhone.length()==10;
-		return  Pattern.matches("[0-9]{10}",numberPhone) && lenght;
+		return  Pattern.matches("(3)[0-9]{9}",numberPhone) && lenght;
 		
 	}
 	

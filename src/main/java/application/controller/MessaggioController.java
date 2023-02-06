@@ -1,8 +1,8 @@
 package application.controller;
 
-import application.model.imageReader;
+import application.util.imageReader;
 import javafx.fxml.FXML;
-
+import javafx.geometry.NodeOrientation;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.ImageView;
 
@@ -25,5 +25,11 @@ public class MessaggioController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+     }
+     public void changeBG() {
+    	
+
+    	 testo.getParent().setStyle("-fx-background-radius:100;"+"-fx-background-color:#bf2b24;");
+    	 testo.getParent().setNodeOrientation(NodeOrientation.LEFT_TO_RIGHT);
      }
 }

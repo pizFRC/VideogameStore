@@ -1,10 +1,10 @@
 .button{
--fx-background-color: #123455;
--fx-text-fill:white;
+-fx-background-color: #E1E5EA;
+-fx-text-fill:black;
 }
 .button:hover{
 
- -fx-background-color: #5799DB;
+ -fx-background-color: #6cbae1;
 -fx-text-fill:white;
 
 
@@ -24,107 +24,124 @@
     -fx-background-insets: 0 -1 -1 -1, 0 0 0 0, 0 -1 3 -1;
 }
 
-#reduceButton , #closeButton{
--fx-text-fill:black;
+/*------------------ HOME -----------------------*/
+#vboxLeft{
+-fx-background-color:#1B262C;
+
+}
+#downloadButton,#chatButton,#carrelloButton,#logoutButton,#homeButton,#cercaButton{
 -fx-background-color: transparent;
-}
-#reduceButton:hover,#closeButton:hover{
--fx-text-fill:white;
--fx-background-color: #5799DB;
-}
-#registrazioneButton,#recuperoPWButton{
--fx-background-color:white;
--fx-text-fill:black;
 
-}
-
-#registrazioneButton:hover{
--fx-font-size:20;
--fx-font-weight:bold;
-}
-
-#recuperoPWButton:hover{
--fx-font-weight:bold;
--fx-font-size:18;
-}
-
-#topPane{
--fx-text-fill:white;
--fx-font-weight:bold;
--fx-background-color:#c45442;
-}
-
-#loginButton:hover{
--fx-background-color: #5799DB;
--fx-text-fill:white;
--fx-font-weight:bold;
--fx-background-radius: 15;
-}
-
-/*------------------------REGISTRAZIONE--------------------------------------------*/
-#backButton{
--fx-background-color: #123455;
--fx-text-fill:white;
--fx-font-weight:bold;
--fx-background-radius: 15;
-
-}
-#backButton:hover{
--fx-background-color: #5799DB;
-}
-#confirmButton{
--fx-background-color: #123455;
--fx-text-fill:white;
--fx-font-weight:bold;
--fx-background-radius: 15;
-}
-#confirmButton:hover{
--fx-background-color: #5799DB;
-}
-#imgButton{
--fx-background-color:transparent;
--fx-background-radius: 50;
-
-}
-#imgButton:hover{
--fx-background-color:grey;
--fx-background-radius: 100;
--fx-scale-y: 1.1;
--fx-scale-x: 1.1;
-
-
-}
-
-
-/*
------------------HOME---------------------------------------------------------
-*/
-#downloadButton:hover,#chatButton:hover,#libreriaButton:hover,#pubblicatiButton:hover,#homeButton:hover,#impostazioniButton:hover{
--fx-background-color: #dfa298;
--fx-scale-y: 1.1;
--fx-scale-x: 1.1;
 -fx-background-radius: 0;
 
 
 }
 
 
-#downloadButton,#chatButton,#libreriaButton,#pubblicatiButton,#homeButton,#impostazioniButton{
--fx-background-color:transparent;
--fx-text-fill:white;
-
-}
-#profileImgButton{
--fx-background-radius:15em;
-}
-#profileImgButton:hover{
--fx-background-color: #dfa298;
-        -fx-scale-y: 1.1;
+#downloadButton:hover,#chatButton:hover,#carrelloButton:hover,#logoutButton:hover,#homeButton:hover,#cercaButton:hover{
+-fx-background-color: #6cbae1;
+-fx-scale-y: 1.1;
 -fx-scale-x: 1.1;
-}
 
-#vboxLeft{
--fx-background-color:#c45442;
+
 
 }
+
+#recuperoPWButton{
+-fx-font-weight:bold;
+-fx-font-size:18;
+-fx-text-fill:white;
+-fx-background-color: transparent;
+}
+
+#registrazioneButton{
+-fx-font-size:20;
+-fx-font-weight:bold;
+-fx-text-fill:white;
+-fx-background-color: transparent;
+}
+
+#recuperoPWButton:hover{
+-fx-font-weight:bold;
+-fx-background-color: #6cbae1;
+-fx-font-size:18;
+}
+
+#registrazioneButton:hover{
+-fx-font-size:20;
+-fx-background-color: #6cbae1;
+-fx-font-weight:bold;
+}
+
+#imgCol{
+ -fx-text-alignment: CENTER-RIGHT;
+}
+
+
+
+
+.table-view .corner {
+    -fx-background-color: transparent;
+}
+
+.table-view{
+    -fx-tree-table-color: rgba(0, 150, 0, 0.8);
+    -fx-tree-table-rippler-color : rgba(255, 0, 0, 0.9);
+}
+.table-view:focused .table-row-cell:selected {
+    -fx-background-color: -fx-tree-table-color  ;
+    -fx-table-cell-border-color: -fx-tree-table-color;
+}
+
+.table-view:focused .table-row-cell:selected .table-cell{
+    -fx-text-fill: white;
+}
+
+
+
+.table-view .column-header ,
+.table-view .column-header-background,
+.table-view .column-header-background .filler{
+    -fx-background-color:TRANSPARENT;
+}
+
+.table-view .column-header{
+    -fx-border-width : 0 1 0 1;
+    -fx-border-color: #F3F3F3;
+}
+.table-view .jfx-rippler {
+    -fx-rippler-fill: -fx-tree-table-rippler-color;
+}
+
+.table-view .column-header .label {
+    -fx-text-fill : black;
+    -fx-padding : 16 0 16 0 ;
+}
+
+.table-view .column-header .arrow, .table-view .column-header { 
+    -fx-background-color : #949494;
+}
+
+.table-view .column-header:last-visible {
+    -fx-border-width: 0 2 0 1;
+}
+
+.table-view .column-header-background{
+    -fx-border-width : 0 0.0 1 0;
+}
+.table-row-cell:empty {
+-fx-background-color: transparent;
+-fx-border-color: transparent;
+}
+
+.erroreField{
+ 
+
+    -fx-background-color: #a9a9a9 , red , red;
+    -fx-background-insets: 0 -1 -1 -1, 0 0 0 0, 0 -1 3 -1;
+}
+
+
+
+
 

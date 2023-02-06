@@ -55,14 +55,15 @@ import javafx.scene.layout.VBox;
 	    	String time=LocalTime.now().toString().substring(0, 5);
 	    	Messaggio m=new Messaggio(account.getUsername(),time,testoMessaggio.getText(),account.getImg());
              if(!Client.getInstance().sendMessageChat(m))
-            	SceneHandler.getInstance().showError("errore durante l'invio connessione persa",AlertType.ERROR);
+            	SceneHandler.getInstance().showMessage("Errore il messaggio non è stato inviato ","Errore",AlertType.ERROR);
              testoMessaggio.clear();
 	    }
 
 		@Override
 		public void handle(long now) {
 			 if(now - previousTime >= frequency  ) {
-				
+				if(!Client.getInstance().getStatus())
+					return;
 				  messaggiVBox.getChildren().clear();
 				
 				 ArrayList<Messaggio> all = Messages.readMessages();
@@ -73,22 +74,23 @@ import javafx.scene.layout.VBox;
 				try {
 					 FXMLLoader loader=new FXMLLoader(getClass().getResource("/fxml/messaggio.fxml"));
 					   Parent root = (Parent)loader.load();
-					  // System.out.println("testo me"+m.getText());
 					   MessaggioController controller=loader.getController();
 					   controller.setDati(m.getUsername()+':'+m.getText(),m.getTime(),m.getImg());
 					 if(m.getUsername().equals(Client.getInstance().getAccount().getUsername()))
 					 {	
 				HBox b=new HBox(root);
-					b.setStyle("-fx-background-color:red");
+					
 				   b.prefWidthProperty().bind(scrollPane.widthProperty());		
-						b.setStyle("-fx-border-color:red");
+					
 						b.setAlignment(Pos.TOP_RIGHT);
 						
 						  messaggiVBox.getChildren().add(b);
 						 
 						 continue;
-					 }
+					 }else {
+							controller.changeBG();
 					   messaggiVBox.getChildren().add(root);
+					 }
 				} catch (IOException e) {
 					
 					e.printStackTrace();
@@ -106,7 +108,7 @@ import javafx.scene.layout.VBox;
 
 	
 		@FXML
-		private void initialize() {
+		 void initialize() {
 	aggiorna=Client.getInstance().getStatus();
 			sep.prefWidthProperty().bind(root.widthProperty());
 			sep.minWidthProperty().bind(root.minWidthProperty());

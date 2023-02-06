@@ -3,72 +3,67 @@ package application.controller;
 
 import application.SceneHandler;
 import application.client.Client;
-import application.client.Messages;
-import application.client.Protocol;
-import application.model.imageReader;
+import application.util.imageReader;
 import javafx.animation.AnimationTimer;
-import javafx.application.Platform;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
 
 
-public class HomeController extends AnimationTimer {
+public class PannelloPrincipale extends AnimationTimer {
 
 	private long previousTime = 0;
 	private long frequency = 1000 * 1000000;
-	private double xOffSet=0;
-	private double yOffSet=0;
 	
 
 	
-	private Stage stage;
-	  @FXML
-	    private Button downloadButton;
+	@FXML
+    private Button downloadButton;
 
-	    @FXML
-	    private ImageView imgProfilo;
+    @FXML
+    private ImageView imgProfilo;
 
-	    @FXML
-	    private Button chatButton;
+    @FXML
+    private Button chatButton;
 
-	    @FXML
-	    private BorderPane root;
+    @FXML
+    private Button carrelloButton;
 
-	    @FXML
-	    private VBox vboxLeft;
+    @FXML
+    private BorderPane root;
 
-	    @FXML
-	    private Label usernameLabel;
+    @FXML
+    private VBox vboxLeft;
 
-	    @FXML
-	    private Button impostazioniButton;
+    @FXML
+    private Label usernameLabel;
 
-	    @FXML
-	    private Button profileImgButton;
+    @FXML
+    private Button logoutButton;
 
-	    @FXML
-	    private Button homeButton;
-	    @FXML
-	    private Button carrelloButton;
+    @FXML
+    private Button cercaButton;
+
+  
+
+    @FXML
+    private Button profileImgButton;
+
+    @FXML
+    private Button homeButton;
+
     
 	    private boolean aggiorna;
-    public void initialize() {
+	    @FXML
+		void initialize(){
     	
     	 aggiorna=Client.getInstance().getStatus();
-    // Client.getInstance().getGameHomeVenduti();
-   //  Client.getInstance().getAllGame();
-   
+  
 		
     }
     
@@ -78,8 +73,12 @@ public class HomeController extends AnimationTimer {
     	try {
 			SceneHandler.getInstance().setProfilo();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			try {
+				SceneHandler.getInstance().showErrorPage();
+			} catch (Exception e1) {
+				
+				e1.printStackTrace();
+			}
 		}
       
    
@@ -87,22 +86,28 @@ public class HomeController extends AnimationTimer {
 
     @FXML
     void changeHome(ActionEvent event) {
-      try {// System.out.println(Client.getInstance().getGameHomeVenduti());
+      try {
 
 		SceneHandler.getInstance().setHomePage();
 	} catch (Exception e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
+		try {
+			SceneHandler.getInstance().showErrorPage();
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
 	}
     }
     @FXML
     void showCerca(ActionEvent event) {
        try {
-    	   System.out.println("cerca premuto");
+    	   
 		SceneHandler.getInstance().showCercaGames();
 	} catch (Exception e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
+		try {
+			SceneHandler.getInstance().showErrorPage();
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
 	}
     }
     @FXML
@@ -115,17 +120,21 @@ public class HomeController extends AnimationTimer {
 			
 		
 	} catch (Exception e) {
-		// TODO Auto-generated catch block
 		e.printStackTrace();
 	}
     }
+    
+    
     @FXML
     void showChat(ActionEvent event) {
 try {
 	SceneHandler.getInstance().showChat();
 } catch (Exception e) {
-	// TODO Auto-generated catch block
-	e.printStackTrace();
+	try {
+		SceneHandler.getInstance().showErrorPage();
+	} catch (Exception e1) {
+		e1.printStackTrace();
+	}
 }
     }
     
@@ -134,17 +143,27 @@ try {
    try {
 	SceneHandler.getInstance().showCarrello();
 } catch (Exception e) {
-	// TODO Auto-generated catch block
-	e.printStackTrace();
+	try {
+		SceneHandler.getInstance().showErrorPage();
+	} catch (Exception e1) {
+		e1.printStackTrace();
+	}
 }
     }
+    
+    
+    
+    
     @FXML
     void showLibreria(ActionEvent event) { 
     	try {
 			SceneHandler.getInstance().showLibreriaAcquisti();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			try {
+				SceneHandler.getInstance().showErrorPage();
+			} catch (Exception e1) {
+				e1.printStackTrace();
+			}
 		}
     }
 	public void handle(long now) {
@@ -156,16 +175,16 @@ try {
 					SceneHandler.getInstance().showErrorPage();
 					
 				} catch (Exception e) {
-					
+					this.stop();
+					return;
 				}
 				 this.stop();
 				 return;
 			 }
 			
-				
+			 carrelloButton.setStyle("-fx-text-fill:white;");
 			
 			
-			 //chatButton.setText(String.valueOf(Messages.getSizeNuoviMessaggi()));
 			  imageReader imgR=new imageReader();
 				Image imgP;
 				
@@ -178,17 +197,16 @@ try {
 					imgP = imgR.byteToImg(Client.getInstance().getAccount().getImg());
 					 setImgProfilo(imgP);
 					 usernameLabel.setText("@"+Client.getInstance().getAccount().getUsername());
-					// SceneHandler.getInstance().setHomePage();
 				} catch (Exception e) {
-					// TODO Auto-generated catch block
+					
 					try {
 						SceneHandler.getInstance().showErrorPage();
 					} catch (Exception e1) {
-						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
 					
-					System.out.println("prova nel home");
+					
+					
 				}
 				
 			 
@@ -199,11 +217,10 @@ try {
 }
 	private void setImgProfilo(Image img) {
 	imgProfilo.setImage(img);	
+imgProfilo.setFitWidth(125);
+	
 	}
-	public void setStage(Stage stage) {
-		this.stage=stage;
-		
-	}
+	
 	
 	
 }

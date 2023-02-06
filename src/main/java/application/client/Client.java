@@ -8,7 +8,6 @@ import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Random;
 
 import application.SceneHandler;
 import application.client.Client;
@@ -16,10 +15,8 @@ import application.model.Account;
 import application.model.AccountLogin;
 import application.model.Game;
 import application.model.Messaggio;
-import javafx.application.Platform;
-import javafx.scene.Scene;
+import application.util.DownloadGame;
 import javafx.scene.control.Alert.AlertType;
-;
 
 
 public class Client implements Runnable{
@@ -31,8 +28,8 @@ public class Client implements Runnable{
 	private AccountLogin account;
 	private String[] info;
 	private boolean status;
+	private DownloadGame lastDownload;
 	ArrayList<Game>carrelloGame= new ArrayList<Game>();
-	List<Game> visitedGame = Collections.synchronizedList(new ArrayList<Game>());
 	List<Game> visitedGameCerca = Collections.synchronizedList(new ArrayList<Game>());
 	List<Game> preferenze = Collections.synchronizedList(new ArrayList<Game>());
 	List<Game> listaAcquistati = Collections.synchronizedList(new ArrayList<Game>());
@@ -44,9 +41,9 @@ public class Client implements Runnable{
 			out=new ObjectOutputStream(socket.getOutputStream());
 			status=true;
 		}  catch (IOException e) {
-		System.out.println("deded");
-			SceneHandler.getInstance().showError("Non sono riuscito a connettermi",AlertType.WARNING);
-	
+		
+			SceneHandler.getInstance().showMessage("Non sono riuscito a connettermi","Errore",AlertType.WARNING);
+			status=false;
 		   reset();
 			
 		}
@@ -74,59 +71,99 @@ public class Client implements Runnable{
 	@Override
 	public void run() {
 		
-		System.out.println("run client");
+		
 		
 		while(isActive() ) {
 			String message;
 			
 			try {
-				System.out.println("Client in attesa");
+				
 				if(status==false) {
-					System.out.println("errore");
+				
 					return;
 				}
 				message = (String)in.readObject();
 				
-				if(message.equals(Protocol.POST_LOGIN)) {
-					 account=(AccountLogin) in.readObject();
-					account.setImg((byte[])in.readObject());
-					
-					info=(String[])in.readObject();
 				
-					ArrayList<Game> all=(ArrayList<Game>)in.readObject();
+				if(message.equals(Protocol.POST_LOGIN)) {
+					Object tmp=in.readObject();
+					if(!(tmp instanceof AccountLogin)) {
+						
+						sendMessage(Protocol.PROTOCOL_NOT_RESPECTED);
+						throw new Exception ();
+					}
+					 account=(AccountLogin)tmp;
+					 tmp=in.readObject();
+						if(!(tmp instanceof byte[])) {
+							sendMessage(Protocol.PROTOCOL_NOT_RESPECTED);
+							throw new Exception ();
+						}
+						
+					account.setImg((byte[])tmp);
+					
+					
+					
+					 tmp=in.readObject();
+						if(!(tmp instanceof String[])) {
+							sendMessage(Protocol.PROTOCOL_NOT_RESPECTED);
+							throw new Exception ();
+						}
+					info=(String[])tmp;
+				
+					
+					 tmp=in.readObject();
+						if(!(tmp instanceof ArrayList<?>)) {
+							
+							sendMessage(Protocol.PROTOCOL_NOT_RESPECTED);
+								throw new Exception ();
+						}
+					ArrayList<Game> all=(ArrayList<Game>)tmp;
 			    
 			    	
 			    	 visitedGameCerca.addAll(all);
-			    	 ArrayList<Game> acqui=(ArrayList<Game>)in.readObject();
+			    	 
+			    	 
+			    	 
+			    	 tmp=in.readObject();
+						if(!(tmp instanceof ArrayList<?>)) {
+							sendMessage(Protocol.PROTOCOL_NOT_RESPECTED);
+							throw new Exception ();
+						}
+			    	 ArrayList<Game> acqui=(ArrayList<Game>)tmp;
 			    
 			    	
 			    	 listaAcquistati.addAll(acqui);
 			    	 
-					System.out.println("L'account loggato è "+account.getUsername());
 					
 					
+					 tmp=in.readObject();
+						if(!(tmp instanceof ArrayList<?>)) {
+							
+							sendMessage(Protocol.PROTOCOL_NOT_RESPECTED);
+								throw new Exception ();
+						}
+					ArrayList<Game> piaciuti=(ArrayList<Game>)tmp;
+			    
+			    	
+					preferenze.addAll(piaciuti);
 					
 			     }else if(message.equals(Protocol.MESSAGE)) {
-				Messaggio m=(Messaggio)in.readObject();
+			    	Object tmp=in.readObject();
+						if(!(tmp instanceof Messaggio)) {
+							
+							sendMessage(Protocol.PROTOCOL_NOT_RESPECTED);
+							throw new Exception ();
+						}
+				Messaggio m=(Messaggio)tmp;
 				Messages.addMessage(m);
 			     }
+			     
 			} catch (Exception e) {
-				//out=null;
-			//System.out.println(	e.getMessage());
-				
 				status=false;
-		//	SceneHandler.getInstance().showError("Disconnesso", AlertType.ERROR);
 				
-				//e.printStackTrace() ;
 				System.out.println("clientexception");
 				
-				//if(Platform.isFxApplicationThread())
 				reset();
-				
-			//Thread.currentThread().interrupt();
-			    
-				//
-    // Platform.exit();
 			
 				
 			}
@@ -142,21 +179,14 @@ public class Client implements Runnable{
 		account.setImg(img);
 	
 	}
-	public void infoAccount() {
-		sendMessage(Protocol.INFO_ACCOUNT);
-		
-	}
+	
 	public String[]getInfo(){
 		return info;
-	}
-	public void recPW() {
-		sendMessagePrivate(Protocol.RECOVERY_PASSWORD);
 	}
 	
 	
 
 	public String login(String username,String password) {
-		//STRINGA LOGIN PER DIRE COSA VOGLIO FARE
 		
 			sendMessagePrivate(Protocol.LOGIN);
 		sendMessagePrivate(new AccountLogin(username,password));
@@ -190,7 +220,6 @@ public class Client implements Runnable{
 	
 	
 	public String registration(String username,String email,String phone,String password,Date dt,byte[]img) {
-		//STRINGA LOGIN PER DIRE COSA VOGLIO FARE
 		
 			sendMessagePrivate(Protocol.REGISTRATION);
 			
@@ -207,10 +236,22 @@ public class Client implements Runnable{
 		}
 	}
 	
-
+public boolean aggiungiPreferito(Game g) {
+	if(preferenze.contains(g)) {
+		preferenze.remove(g);
+		
+		return true;
+}
+		else
+			preferenze.add(g);
+	
+	
+	return false;
+	
+	
+}
 	private boolean sendMessagePrivate(Object message) {
 		if(out==null) {
-			System.out.println("out = null");
 			return false;
 		}
 			
@@ -219,12 +260,13 @@ public class Client implements Runnable{
 			out.writeObject(message);
 			
 			out.flush();
+			return true;
 		} catch (IOException e) {
 			
 			reset();
 			return false;
 		}
-		return true;
+	
 		
 	}
 	
@@ -282,15 +324,20 @@ public class Client implements Runnable{
    	
    	return  tmp;
    }
+    public synchronized ArrayList<Game> getGamePreferiti(){
+    	
+      	 ArrayList<Game>tmp=new ArrayList<Game>(preferenze);
+      	
+      	return  tmp;
+      }
 
 	public boolean addGameCarrello(Game tmp) {
-	System.out.println(listaAcquistati);
 		if( getGameAcquistati().contains(tmp)) {
 			
-			System.out.println("funzionamento forse corretto");
+			
 			return false;
 		}else
-			System.out.println("prova else "+tmp.getNome()+getGameAcquistati());
+			
 		if(carrelloGame.contains(tmp) )
 			return false;
 			
@@ -313,10 +360,10 @@ public class Client implements Runnable{
 	
 
 	public void svuotaCarrello() {
-		System.out.println("mandato");
+	
 		sendMessage(Protocol.ACQUISTO);
 		
-		System.out.println(carrelloGame);
+		
 		sendMessagePrivate(carrelloGame);
 
 
@@ -335,6 +382,14 @@ public class Client implements Runnable{
 		sendMessage(Protocol.DOWNLOAD);
 		sendMessagePrivate(g);
 		
+	}
+
+	public DownloadGame getLastDownload() {
+		return lastDownload;
+	}
+
+	public void setLastDownload(DownloadGame lastDownload) {
+		this.lastDownload = lastDownload;
 	}
 	
 	

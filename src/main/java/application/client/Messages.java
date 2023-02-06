@@ -1,8 +1,6 @@
 package application.client;
 
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
 
 import application.model.Messaggio;
 
@@ -15,7 +13,6 @@ public class Messages {
 	
 		allMessages.add(message);
 		
-		//canRead=true;
 	}
 	
 	public synchronized static ArrayList<Messaggio> readMessages() {
@@ -26,8 +23,6 @@ public class Messages {
 			
 		}
 		
-		
-		//allMessages.clear();
 		
 		return tmp;
 	}

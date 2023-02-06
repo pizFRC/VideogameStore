@@ -8,17 +8,17 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane fx:id="root" prefHeight="900.0" prefWidth="1400.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.HomeController">
+<BorderPane fx:id="root" prefHeight="900.0" prefWidth="1400.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controller.PannelloPrincipale">
    <left>
-      <VBox fx:id="vboxLeft" prefHeight="900.0" prefWidth="150.0" BorderPane.alignment="TOP_CENTER">
+      <VBox fx:id="vboxLeft" prefHeight="900.0" prefWidth="70.0" style="-fx-background-color: #222831;">
          <children>
             <HBox>
                <children>
-                  <VBox alignment="CENTER" prefHeight="296.0" prefWidth="188.0" HBox.hgrow="ALWAYS">
+                  <VBox alignment="CENTER" prefHeight="296.0" HBox.hgrow="ALWAYS">
                      <children>
                         <Button fx:id="profileImgButton" alignment="CENTER" mnemonicParsing="false" onAction="#setProfilo" VBox.vgrow="ALWAYS">
                            <graphic>
-                              <ImageView fx:id="imgProfilo" fitHeight="150.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true" />
+                              <ImageView fx:id="imgProfilo" fitHeight="89.0" fitWidth="94.0" pickOnBounds="true" preserveRatio="true" />
                            </graphic>
                            <VBox.margin>
                               <Insets left="10.0" right="10.0" />
@@ -36,20 +36,20 @@
                   </VBox>
                </children>
             </HBox>
-            <Button fx:id="homeButton" alignment="TOP_CENTER" graphicTextGap="20.0" mnemonicParsing="false" onAction="#changeHome" prefHeight="60.0" prefWidth="300.0">
+            <Button fx:id="homeButton" alignment="TOP_CENTER" graphicTextGap="20.0" mnemonicParsing="false" onAction="#changeHome" prefHeight="60.0" prefWidth="170.0">
                <font>
                   <Font size="20.0" />
                </font>
                <graphic>
-                  <FontAwesomeIcon iconName="HOME" size="2em" text="" />
+                  <FontAwesomeIcon fill="WHITE" iconName="HOME" size="2em" />
                </graphic>
             </Button>
-            <Button alignment="TOP_CENTER" graphicTextGap="20.0" mnemonicParsing="false" onAction="#showCerca" prefHeight="60.0" prefWidth="300.0" textAlignment="CENTER">
+            <Button fx:id="cercaButton" alignment="TOP_CENTER" graphicTextGap="20.0" mnemonicParsing="false" onAction="#showCerca" prefHeight="60.0" prefWidth="300.0" textAlignment="CENTER">
                <font>
                   <Font size="20.0" />
                </font>
                <graphic>
-                  <FontAwesomeIcon iconName="SEARCH" size="2em" />
+                  <FontAwesomeIcon fill="WHITE" iconName="SEARCH" size="2em" />
                </graphic>
             </Button>
             <Button fx:id="chatButton" alignment="TOP_CENTER" graphicTextGap="20.0" mnemonicParsing="false" onAction="#showChat" prefHeight="60.0" prefWidth="300.0" textFill="WHITE">
@@ -57,7 +57,7 @@
                   <Font name="System Bold" size="20.0" />
                </font>
                <graphic>
-                  <FontAwesomeIcon iconName="COMMENTS" size="2em" />
+                  <FontAwesomeIcon fill="WHITE" iconName="COMMENTS" size="2em" />
                </graphic>
             </Button>
             <Button fx:id="downloadButton" alignment="TOP_CENTER" graphicTextGap="20.0" mnemonicParsing="false" onAction="#showLibreria" prefHeight="60.0" prefWidth="300.0" textAlignment="CENTER">
@@ -65,7 +65,7 @@
                   <Font size="20.0" />
                </font>
                <graphic>
-                  <FontAwesomeIcon iconName="DOWNLOAD" size="2em" />
+                  <FontAwesomeIcon fill="WHITE" iconName="DOWNLOAD" size="2em" />
                </graphic>
             </Button>
             <Button fx:id="carrelloButton" alignment="CENTER" graphicTextGap="15.0" mnemonicParsing="false" onAction="#showCarrello" prefHeight="60.0" prefWidth="300.0" textAlignment="CENTER">
@@ -73,10 +73,10 @@
                   <Font size="20.0" />
                </font>
                <graphic>
-                  <FontAwesomeIcon iconName="SHOPPING_CART" size="2em" />
+                  <FontAwesomeIcon fill="WHITE" iconName="SHOPPING_CART" size="2em" />
                </graphic>
             </Button>
-            <Button fx:id="impostazioniButton" alignment="TOP_CENTER" graphicTextGap="20.0" mnemonicParsing="false" onAction="#logout" prefHeight="60.0" prefWidth="300.0">
+            <Button fx:id="logoutButton" alignment="TOP_CENTER" graphicTextGap="20.0" mnemonicParsing="false" onAction="#logout" prefHeight="60.0" prefWidth="300.0">
                <font>
                   <Font size="20.0" />
                </font>
@@ -87,12 +87,12 @@
                   <FontAwesomeIcon />
                </graphic>
                <graphic>
-                  <FontAwesomeIcon iconName="SIGN_OUT" size="2em" />
+                  <FontAwesomeIcon fill="WHITE" iconName="SIGN_OUT" size="2em" />
                </graphic>
             </Button>
          </children>
          <BorderPane.margin>
-            <Insets right="10.0" />
+            <Insets />
          </BorderPane.margin>
       </VBox>
    </left>
